@@ -1,12 +1,10 @@
-# pip install openai   ← إذا ما موجودة
-
 from openai import OpenAI
 import os
 import json
 import re
 from dotenv import load_dotenv
 
-load_dotenv()  # يقرأ .env إذا موجود
+load_dotenv() 
 
 def analyze_company(company, pages, objective):
     combined_text = ""
@@ -57,10 +55,10 @@ Sources:
             messages=[{"role": "user", "content": prompt}],
             temperature=0.1,
             max_tokens=2000,
-            response_format={"type": "json_object"},   # يساعد كثير في JSON نظيف
+            response_format={"type": "json_object"},  
             extra_headers={
-                "HTTP-Referer": "https://your-app.com",           # اختياري، يساعد في بعض الـ tracking
-                "X-Title": "Company Analysis Tool"               # اختياري
+                "HTTP-Referer": "https://your-app.com",           
+                "X-Title": "Company Analysis Tool"               
             }
         )
 
