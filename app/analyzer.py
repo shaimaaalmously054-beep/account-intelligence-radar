@@ -48,10 +48,7 @@ Sources:
 
     try:
         response = client.chat.completions.create(
-            model="openrouter/free",  # ← نموذج مجاني قوي، غيّره حسب الحاجة
-            # أو جرب: "qwen/qwen3-coder:free" أو "google/gemma-3-27b-it:free"
-            # أو "openrouter/free" لاختيار تلقائي
-
+            model="openrouter/free", 
             messages=[{"role": "user", "content": prompt}],
             temperature=0.1,
             max_tokens=2000,
