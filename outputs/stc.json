@@ -1,0 +1,39 @@
+{
+  "company_name": "STC",
+  "headquarters": "Riyadh, Saudi Arabia",
+  "business_units": [
+    "solutions by stc"
+  ],
+  "products_services": [
+    "Telecom Services",
+    "Cloud Solutions",
+    "AI-Driven Solutions",
+    "Digital Transformation Services",
+    "Healthcare Technology",
+    "Education Technology"
+  ],
+  "target_industries": [
+    "Healthcare",
+    "Education",
+    "Government",
+    "Retail",
+    "Finance"
+  ],
+  "executives": [
+    {
+      "name": "Riyadh Muawad",
+      "title": "Chairman of the Board and Chief Executive Officer"
+    }
+  ],
+  "strategic_initiatives": [
+    "Digital Transformation",
+    "AI and Machine Learning Implementation",
+    "Sustainability Initiatives",
+    "Partnerships with Global Innovators",
+    "Mass-Scale Government Projects"
+  ],
+  "sources": [
+    "https://www.stc.com/content/dam/groupsites/en/pdf/ExecutiveSummary-2024-en.pdf",
+    "https://solutions.com.sa/report-investor-relations/annual-report-2024/leadership.html"
+  ]
+}

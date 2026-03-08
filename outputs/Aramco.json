@@ -1,0 +1,75 @@
+{
+  "company_name": "Aramco",
+  "headquarters": "Dhahran, Saudi Arabia",
+  "business_units": [
+    "Upstream",
+    "Downstream",
+    "Technology & Innovation",
+    "Strategy & Corporate Development",
+    "Corporate Management"
+  ],
+  "products_services": [
+    "Crude Oil",
+    "Natural Gas",
+    "Gas Liquids",
+    "Chemicals",
+    "Refining Products"
+  ],
+  "target_industries": [
+    "Global Energy",
+    "Transportation",
+    "Materials",
+    "Chemicals"
+  ],
+  "executives": [
+    {
+      "name": "Amin H. Nasser",
+      "title": "President & CEO"
+    },
+    {
+      "name": "Nasir K. Al-Naimi",
+      "title": "Upstream President"
+    },
+    {
+      "name": "Mohammed Y. Al Qahtani",
+      "title": "Downstream President"
+    },
+    {
+      "name": "Ziad T. Al-Murshed",
+      "title": "Executive Vice President & Chief Financial Officer"
+    },
+    {
+      "name": "Wail A. Al Jaafari",
+      "title": "Executive Vice President Technical Services"
+    },
+    {
+      "name": "Nabeel A. Al Mansour",
+      "title": "Executive Vice President, General Counsel & Corporate Secretary"
+    },
+    {
+      "name": "Nabeel A. Al-Jama",
+      "title": "Executive Vice President Human Resources & Corporate Services"
+    },
+    {
+      "name": "Ashraf A. Al Ghazzawi",
+      "title": "Executive Vice President Strategy & Corporate Development"
+    },
+    {
+      "name": "Ahmad O. Al-Khowaiter",
+      "title": "Executive Vice President Technology & Innovation"
+    }
+  ],
+  "strategic_initiatives": [
+    "Increase sales gas production capacity by more than 60% by 2030",
+    "Maintain position as world's largest crude oil producer",
+    "Capture additional value across hydrocarbon value chain",
+    "Invest in lower-carbon technologies",
+    "Navigate global energy transition"
+  ],
+  "sources": [
+    "SOURCE: https://www.aramco.com/-/media/publications/corporate-reports/reports-and-presentations/2023/fy/sections/ara-2023-overview-english.pdf",
+    "SOURCE: https://www.aramco.com/en/about-us/our-leadership",
+    "SOURCE: https://www.organimi.com/organizational-structures/aramco/",
+    "SOURCE: https://www.aramco.com/en/investors/annual-report/strategy"
+  ]
+}

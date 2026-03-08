@@ -1,0 +1,48 @@
+{
+  "company_name": "alfanar",
+  "headquarters": "Riyadh",
+  "business_units": [
+    "Alfanar Electric",
+    "Alfanar Construction",
+    "Alfanar Building Systems"
+  ],
+  "products_services": [
+    "electrical construction products",
+    "engineering and construction services",
+    "manufacturing",
+    "infrastructure development",
+    "allied engineering services"
+  ],
+  "target_industries": [
+    "Construction",
+    "Renewable Energy",
+    "Water Infrastructure",
+    "Engineering Services"
+  ],
+  "executives": [
+    {
+      "name": "Abdulsalam Al Mutlaq",
+      "title": "Chairman, Alfanar Group"
+    },
+    {
+      "name": "Sabah Al Mutlaq",
+      "title": "Vice Chairman, Alfanar & Managing Director, Alfanar Projects"
+    },
+    {
+      "name": "Hisham Al Mutlaq",
+      "title": "Managing Director, Alfanar Building Systems & Director at the board, Alfanar group"
+    }
+  ],
+  "strategic_initiatives": [
+    "Grid Renewable Energy",
+    "Water Infrastructure",
+    "Digital Solutions",
+    "Sustainability Projects"
+  ],
+  "sources": [
+    "https://www.alfanar.com/Company-Management.html",
+    "https://alfanarprojects.com/en-us/who-we-are/executive-management/",
+    "https://www.constructionweekonline.com/business/alfanar-projects-insidelook",
+    "https://www.scribd.com/document/336706138/Alfanar-Corporate-Profile"
+  ]
+}
