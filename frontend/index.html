@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Account Intelligence Radar — Averroa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Design tokens ─────────────────────────────────────────────── */
+    :root {
+      --bg:        #080c10;
+      --surface:   #0e1420;
+      --border:    #1c2535;
+      --accent:    #c8a03c;       /* Averroa gold */
+      --accent2:   #1d6fa4;       /* Averroa teal */
+      --text:      #d4dde8;
+      --muted:     #5a6a7e;
+      --success:   #2dd4a0;
+      --danger:    #e05252;
+      --running:   #4a9eff;
+      --mono:      'Space Mono', monospace;
+      --sans:      'Syne', sans-serif;
+      --radius:    6px;
+      --glow:      0 0 24px rgba(200,160,60,0.15);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Grid background ────────────────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(28,37,53,0.4) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(28,37,53,0.4) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Header ─────────────────────────────────────────────────────── */
+    header {
+      position: relative; z-index: 10;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 40px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(8,12,16,0.9);
+      backdrop-filter: blur(8px);
+    }
+
+    .logo {
+      display: flex; align-items: center; gap: 14px;
+    }
+    .logo-mark {
+      width: 38px; height: 38px;
+      background: var(--accent);
+      clip-path: polygon(0 0, 100% 0, 100% 70%, 70% 100%, 0 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .logo-mark span {
+      font-family: var(--sans);
+      font-weight: 800;
+      font-size: 12px;
+      color: #000;
+      letter-spacing: 0.05em;
+    }
+    .logo-text { font-weight: 800; font-size: 15px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .logo-sub  { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.15em; }
+
+    .header-badge {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--accent);
+      border: 1px solid rgba(200,160,60,0.3);
+      padding: 4px 10px;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── Layout ─────────────────────────────────────────────────────── */
+    main {
+      position: relative; z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .page-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .page-title em {
+      font-style: normal;
+      color: var(--accent);
+    }
+    .page-subtitle {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      margin-bottom: 48px;
+    }
+
+    /* ── Mode tabs ──────────────────────────────────────────────────── */
+    .mode-tabs {
+      display: flex; gap: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      width: fit-content;
+      margin-bottom: 32px;
+    }
+    .mode-tab {
+      padding: 10px 28px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      background: var(--surface);
+      color: var(--muted);
+      transition: all 0.2s;
+    }
+    .mode-tab.active {
+      background: var(--accent);
+      color: #000;
+      font-weight: 700;
+    }
+    .mode-tab:hover:not(.active) { color: var(--text); background: var(--border); }
+
+    /* ── Form ───────────────────────────────────────────────────────── */
+    .form-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-bottom: 32px;
+    }
+
+    .form-grid { display: grid; gap: 20px; }
+    .form-grid.two-col { grid-template-columns: 1fr 1fr; }
+    @media (max-width: 640px) { .form-grid.two-col { grid-template-columns: 1fr; } }
+
+    label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 13px;
+      padding: 10px 14px;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(200,160,60,0.12);
+    }
+    textarea { resize: vertical; min-height: 80px; }
+
+    .field-hint {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 5px;
+    }
+
+    /* ── Submit button ──────────────────────────────────────────────── */
+    .btn-run {
+      display: flex; align-items: center; gap: 10px;
+      padding: 14px 32px;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--sans);
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 8px;
+    }
+    .btn-run:hover:not(:disabled) {
+      background: #e8b840;
+      transform: translateY(-1px);
+      box-shadow: var(--glow);
+    }
+    .btn-run:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    /* ── Status panel ───────────────────────────────────────────────── */
+    #status-panel {
+      display: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 32px;
+      margin-bottom: 32px;
+    }
+
+    .status-row {
+      display: flex; align-items: center; gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .status-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .status-dot.pending  { background: var(--muted); }
+    .status-dot.running  { background: var(--running); animation: pulse 1.2s infinite; }
+    .status-dot.completed{ background: var(--success); }
+    .status-dot.failed   { background: var(--danger); }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .status-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .status-label.running   { color: var(--running); }
+    .status-label.completed { color: var(--success); }
+    .status-label.failed    { color: var(--danger); }
+    .status-label.pending   { color: var(--muted); }
+
+    .job-id {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .progress-bar-wrap {
+      height: 3px;
+      background: var(--border);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+      border-radius: 99px;
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+    .progress-bar.indeterminate {
+      width: 40%;
+      animation: slide 1.4s ease-in-out infinite;
+    }
+    @keyframes slide {
+      0%   { transform: translateX(-200%); }
+      100% { transform: translateX(350%); }
+    }
+
+    /* ── Report output ──────────────────────────────────────────────── */
+    #results-section { display: none; }
+
+    .results-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 24px;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .results-title {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+    .results-title span { color: var(--accent); }
+
+    .download-group { display: flex; gap: 10px; }
+    .btn-dl {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 18px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: transparent;
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 11px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .btn-dl:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── Company report card ────────────────────────────────────────── */
+    .report-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 24px;
+      overflow: hidden;
+      animation: fadeUp 0.4s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .report-card-header {
+      display: flex; align-items: center; gap: 16px;
+      padding: 20px 28px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+    }
+    .company-icon {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800;
+      font-size: 15px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .company-name { font-size: 18px; font-weight: 800; }
+    .company-hq   { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+    .report-card-body { padding: 24px 28px; display: grid; gap: 24px; }
+    .report-card-body.two { grid-template-columns: 1fr 1fr; }
+    @media (max-width: 700px) { .report-card-body.two { grid-template-columns: 1fr; } }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .tag-list { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 3px 10px;
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .exec-list { display: flex; flex-direction: column; gap: 8px; }
+    .exec-item {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.02);
+      border-radius: 4px;
+      border-left: 2px solid var(--accent2);
+      gap: 12px;
+    }
+    .exec-name  { font-size: 13px; font-weight: 600; }
+    .exec-title { font-family: var(--mono); font-size: 10px; color: var(--muted); text-align: right; }
+
+    .initiative-list { display: flex; flex-direction: column; gap: 8px; }
+    .initiative-item {
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.02);
+      border-radius: 4px;
+      border-left: 2px solid var(--accent);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .initiative-cat {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .evidence-list { display: flex; flex-direction: column; gap: 6px; }
+    .evidence-item a {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent2);
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .evidence-item a:hover { text-decoration: underline; color: var(--accent); }
+
+    .linkedin-box {
+      background: rgba(29,111,164,0.08);
+      border: 1px solid rgba(29,111,164,0.25);
+      border-radius: 4px;
+      padding: 12px 16px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      word-break: break-all;
+    }
+    .linkedin-box strong { color: var(--accent2); display: block; margin-bottom: 4px; }
+
+    .empty-state {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ── Error banner ───────────────────────────────────────────────── */
+    .error-banner {
+      display: none;
+      background: rgba(224,82,82,0.1);
+      border: 1px solid rgba(224,82,82,0.3);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      color: var(--danger);
+      font-family: var(--mono);
+      font-size: 12px;
+      margin-bottom: 24px;
+    }
+
+    /* ── API config bar ─────────────────────────────────────────────── */
+    .config-bar {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 20px;
+      background: rgba(200,160,60,0.06);
+      border: 1px solid rgba(200,160,60,0.2);
+      border-radius: var(--radius);
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .config-bar-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .config-url-input {
+      flex: 1;
+      min-width: 200px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 6px 12px;
+      outline: none;
+    }
+    .config-url-input:focus { border-color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-mark"><span>AV</span></div>
+    <div>
+      <div class="logo-text">Averroa</div>
+      <div class="logo-sub">Account Intelligence Radar</div>
+    </div>
+  </div>
+  <div class="header-badge">v1.0.0 // INTERNAL</div>
+</header>
+
+<main>
+  <h1 class="page-title">Account<br/><em>Intelligence</em> Radar</h1>
+  <p class="page-subtitle">// PIPELINE GENERATION INFRASTRUCTURE FOR B2B OUTREACH</p>
+
+  <!-- API config -->
+  <div class="config-bar">
+    <span class="config-bar-label">⚙ API Base URL</span>
+    <input class="config-url-input" id="api-base" value="http://localhost:8000" placeholder="http://localhost:8000" />
+  </div>
+
+  <!-- Mode tabs -->
+  <div class="mode-tabs">
+    <button class="mode-tab active" onclick="setMode('company')" id="tab-company">◈ Company</button>
+    <button class="mode-tab" onclick="setMode('geography')" id="tab-geography">◉ Geography</button>
+  </div>
+
+  <!-- Form -->
+  <div class="form-card">
+    <!-- Company mode -->
+    <div id="form-company">
+      <div class="form-grid">
+        <div>
+          <label>Company Name *</label>
+          <input id="c-company" type="text" placeholder="e.g. Aramco, Almarai, SABIC" />
+        </div>
+        <div>
+          <label>Objective Prompt</label>
+          <textarea id="c-objective">Extract headquarters, business units, core products, target industries, key executives, and recent strategic initiatives. Return structured JSON.</textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Geography mode -->
+    <div id="form-geography" style="display:none">
+      <div class="form-grid two-col">
+        <div>
+          <label>Location *</label>
+          <input id="g-location" type="text" placeholder="e.g. Riyadh, Saudi Arabia" />
+          <p class="field-hint">City & country, or country + sector</p>
+        </div>
+        <div>
+          <label>Target Criteria *</label>
+          <input id="g-criteria" type="text" placeholder="e.g. manufacturing, energy, logistics" />
+        </div>
+        <div>
+          <label>Objective Prompt</label>
+          <textarea id="g-objective">Identify top companies matching the criteria, then extract headquarters, business units, core products, target industries, key executives, and recent strategic initiatives.</textarea>
+        </div>
+        <div>
+          <label>Top N Companies</label>
+          <input id="g-topn" type="number" value="3" min="1" max="10" />
+          <p class="field-hint">Maximum companies to deep-dive (1–10)</p>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-run" id="run-btn" onclick="submitJob()">
+      <span>▶</span> Run Intelligence Scan
+    </button>
+  </div>
+
+  <!-- Error -->
+  <div class="error-banner" id="error-banner"></div>
+
+  <!-- Status -->
+  <div id="status-panel">
+    <div class="status-row">
+      <div class="status-dot" id="s-dot"></div>
+      <div class="status-label" id="s-label">—</div>
+      <div class="job-id" id="s-jobid"></div>
+    </div>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar indeterminate" id="s-bar"></div>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div id="results-section">
+    <div class="results-header">
+      <div class="results-title">Intelligence <span>Reports</span></div>
+      <div class="download-group" id="dl-group"></div>
+    </div>
+    <div id="reports-container"></div>
+  </div>
+</main>
+
+<script>
+  let currentMode = 'company';
+  let pollTimer = null;
+
+  function setMode(m) {
+    currentMode = m;
+    document.getElementById('form-company').style.display   = m === 'company'   ? '' : 'none';
+    document.getElementById('form-geography').style.display = m === 'geography' ? '' : 'none';
+    document.getElementById('tab-company').classList.toggle('active', m === 'company');
+    document.getElementById('tab-geography').classList.toggle('active', m === 'geography');
+  }
+
+  function apiBase() {
+    return document.getElementById('api-base').value.replace(/\/$/, '');
+  }
+
+  async function submitJob() {
+    hideError();
+    document.getElementById('results-section').style.display = 'none';
+
+    let payload = { mode: currentMode };
+
+    if (currentMode === 'company') {
+      const name = document.getElementById('c-company').value.trim();
+      if (!name) return showError('Company name is required.');
+      payload.company = {
+        company_name: name,
+        objective_prompt: document.getElementById('c-objective').value.trim(),
+      };
+    } else {
+      const loc  = document.getElementById('g-location').value.trim();
+      const crit = document.getElementById('g-criteria').value.trim();
+      if (!loc || !crit)  return showError('Location and target criteria are required.');
+      payload.geography = {
+        location: loc,
+        target_criteria: crit,
+        objective_prompt: document.getElementById('g-objective').value.trim(),
+        top_n: parseInt(document.getElementById('g-topn').value, 10) || 3,
+      };
+    }
+
+    setRunBtn(true);
+
+    try {
+      const res = await fetch(`${apiBase()}/api/jobs`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.detail || `HTTP ${res.status}`);
+      }
+      const job = await res.json();
+      showStatus(job);
+      startPolling(job.job_id);
+    } catch (e) {
+      setRunBtn(false);
+      showError(`Failed to submit job: ${e.message}`);
+    }
+  }
+
+  function startPolling(jobId) {
+    if (pollTimer) clearInterval(pollTimer);
+    pollTimer = setInterval(() => pollJob(jobId), 3000);
+  }
+
+  async function pollJob(jobId) {
+    try {
+      const res = await fetch(`${apiBase()}/api/jobs/${jobId}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const job = await res.json();
+      showStatus(job);
+
+      if (job.status === 'completed') {
+        clearInterval(pollTimer);
+        setRunBtn(false);
+        renderReports(job);
+      } else if (job.status === 'failed') {
+        clearInterval(pollTimer);
+        setRunBtn(false);
+        showError(`Job failed: ${job.error || 'Unknown error'}`);
+        document.getElementById('status-panel').style.display = 'none';
+      }
+    } catch (e) {
+      // silently retry
+    }
+  }
+
+  function showStatus(job) {
+    const panel = document.getElementById('status-panel');
+    panel.style.display = '';
+    const dot   = document.getElementById('s-dot');
+    const label = document.getElementById('s-label');
+    const bar   = document.getElementById('s-bar');
+
+    dot.className   = `status-dot ${job.status}`;
+    label.className = `status-label ${job.status}`;
+    label.textContent = job.status.toUpperCase();
+    document.getElementById('s-jobid').textContent = `// JOB ${job.job_id.slice(0, 8).toUpperCase()}`;
+
+    if (job.status === 'running' || job.status === 'pending') {
+      bar.classList.add('indeterminate');
+    } else {
+      bar.classList.remove('indeterminate');
+      bar.style.width = job.status === 'completed' ? '100%' : '0%';
+    }
+  }
+
+  function renderReports(job) {
+    const section = document.getElementById('results-section');
+    section.style.display = '';
+    const container = document.getElementById('reports-container');
+    container.innerHTML = '';
+
+    const dlGroup = document.getElementById('dl-group');
+    dlGroup.innerHTML = '';
+
+    // Download buttons
+    if (job.report_paths && Object.keys(job.report_paths).length) {
+      const firstKey = Object.keys(job.report_paths)[0];
+      ['json', 'markdown'].forEach(fmt => {
+        const btn = document.createElement('a');
+        btn.className = 'btn-dl';
+        btn.href = `${apiBase()}/api/jobs/${job.job_id}/download/${fmt}`;
+        btn.download = `report.${fmt === 'json' ? 'json' : 'md'}`;
+        btn.innerHTML = `⬇ ${fmt.toUpperCase()}`;
+        dlGroup.appendChild(btn);
+      });
+    }
+
+    const reports = job.result || [];
+    if (!reports.length) {
+      container.innerHTML = '<p style="color:var(--muted);font-family:var(--mono);font-size:12px">No reports generated.</p>';
+      return;
+    }
+
+    reports.forEach((r, idx) => {
+      container.appendChild(buildCard(r, idx));
+    });
+  }
+
+  function buildCard(r, idx) {
+    const card = document.createElement('div');
+    card.className = 'report-card';
+    card.style.animationDelay = `${idx * 80}ms`;
+
+    const initials = (r.company_name || '?').split(/\s+/).map(w => w[0]).slice(0,2).join('').toUpperCase();
+
+    card.innerHTML = `
+      <div class="report-card-header">
+        <div class="company-icon">${initials}</div>
+        <div>
+          <div class="company-name">${esc(r.company_name)}</div>
+          <div class="company-hq">📍 ${esc(r.headquarters || 'Headquarters not found')}</div>
+        </div>
+      </div>
+      <div class="report-card-body two">
+        <!-- Col 1 -->
+        <div>
+          ${section('Business Units', tagList(r.business_units))}
+          ${section('Products & Services', tagList(r.products_and_services))}
+          ${section('Target Industries', tagList(r.target_industries))}
+        </div>
+        <!-- Col 2 -->
+        <div>
+          ${section('Leadership Signals', execList(r.leadership))}
+          ${section('Strategic Initiatives', initiativeList(r.strategic_initiatives))}
+        </div>
+      </div>
+      <div style="padding: 0 28px 24px">
+        ${section('Evidence Links', evidenceList(r.evidence_links))}
+        ${section('LinkedIn Outreach (Manual Only)', linkedinBox(r.linkedin_search_suggestion))}
+      </div>
+    `;
+    return card;
+  }
+
+  function section(title, content) {
+    return `<div style="margin-bottom:18px">
+      <div class="section-label">${title}</div>
+      ${content}
+    </div>`;
+  }
+
+  function tagList(arr) {
+    if (!arr || !arr.length) return `<p class="empty-state">Not found</p>`;
+    return `<div class="tag-list">${arr.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>`;
+  }
+
+  function execList(arr) {
+    if (!arr || !arr.length) return `<p class="empty-state">No publicly verifiable data</p>`;
+    return `<div class="exec-list">${arr.map(e =>
+      `<div class="exec-item">
+        <div class="exec-name">${esc(e.name)}</div>
+        <div class="exec-title">${esc(e.title)}</div>
+      </div>`
+    ).join('')}</div>`;
+  }
+
+  function initiativeList(arr) {
+    if (!arr || !arr.length) return `<p class="empty-state">No initiatives found</p>`;
+    return `<div class="initiative-list">${arr.map(i =>
+      `<div class="initiative-item">
+        ${i.category ? `<div class="initiative-cat">#${esc(i.category)}</div>` : ''}
+        ${esc(i.description)}
+      </div>`
+    ).join('')}</div>`;
+  }
+
+  function evidenceList(arr) {
+    if (!arr || !arr.length) return `<p class="empty-state">No sources recorded</p>`;
+    return `<div class="evidence-list">${arr.map(e =>
+      `<div class="evidence-item"><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.url)}</a></div>`
+    ).join('')}</div>`;
+  }
+
+  function linkedinBox(suggestion) {
+    if (!suggestion) return '';
+    return `<div class="linkedin-box">
+      <strong>⚠ Manual browser search only — automation is prohibited</strong>
+      ${esc(suggestion)}
+    </div>`;
+  }
+
+  function esc(s) {
+    if (!s) return '';
+    return String(s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;');
+  }
+
+  function setRunBtn(loading) {
+    const btn = document.getElementById('run-btn');
+    btn.disabled = loading;
+    btn.innerHTML = loading
+      ? '<span style="animation:pulse 1s infinite;display:inline-block">⬤</span> Scanning…'
+      : '<span>▶</span> Run Intelligence Scan';
+  }
+
+  function showError(msg) {
+    const el = document.getElementById('error-banner');
+    el.style.display = '';
+    el.textContent = `⚠ ${msg}`;
+  }
+  function hideError() {
+    document.getElementById('error-banner').style.display = 'none';
+  }
+</script>
+</body>
+</html>

@@ -1,6 +1,0 @@
-requests
-python-dotenv
-openai
-serpapi
-beautifulsoup4
-firecrawl

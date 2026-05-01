@@ -1,0 +1,156 @@
+{
+  "company_name": "QatarEnergy",
+  "headquarters": "Doha, Qatar",
+  "business_units": [
+    "QatarEnergy LNG",
+    "Qatar Petroleum",
+    "Qatar Fertilizer Company (QAFCO)",
+    "Qatar Petrochemical Company (QAPCO)",
+    "Qatar Chemical Company (Q-Chem)",
+    "Qatar Aluminium Manufacturing Company (Qatalum)",
+    "Gulf International Services (GIS)",
+    "Mesaieed Petrochemical Holding Company (MPHC)",
+    "Dolphin Energy Limited (DEL)",
+    "RasGas Company Limited"
+  ],
+  "products_and_services": [
+    "Liquefied Natural Gas (LNG)",
+    "Crude Oil",
+    "Natural Gas",
+    "Refined Products",
+    "Petrochemicals",
+    "Fertilizers",
+    "Steel Products",
+    "Electricity and Water Production",
+    "Insurance Services",
+    "Helicopter Services",
+    "Helium production"
+  ],
+  "target_industries": [
+    "Energy",
+    "Petrochemicals",
+    "Construction",
+    "Transportation",
+    "Utilities",
+    "Insurance",
+    "Oil and Gas",
+    "Sustainability"
+  ],
+  "leadership": [
+    {
+      "name": "H.E. Saad Sherida Al-Kaabi",
+      "title": "President and CEO",
+      "source_url": null
+    },
+    {
+      "name": "Mr. Ahmad Saif Al-Sulaiti",
+      "title": "Executive VP - Operations",
+      "source_url": null
+    },
+    {
+      "name": "Mr. Abdulaziz Jassim Al-Muftah",
+      "title": "Executive VP - Industrial Cities",
+      "source_url": null
+    },
+    {
+      "name": "Mr. Ahmad Saeed Al-Amoodi",
+      "title": "Executive VP - Human Capital",
+      "source_url": null
+    },
+    {
+      "name": "Mr. Khalid Mohammed Al-Hitmi",
+      "title": "Executive VP - Subsurface Development and Exploration",
+      "source_url": null
+    },
+    {
+      "name": "Mr. Nabeel Mohammed Al-Buenain",
+      "title": "Corporate Manager, CEO Office",
+      "source_url": null
+    },
+    {
+      "name": "Mr. Bader Mubarak Al-Khalifa",
+      "title": "Corporate Manager, Internal Audit",
+      "source_url": null
+    },
+    {
+      "name": "Mr. Saad Sherida Al Kaabi",
+      "title": "President & CEO",
+      "source_url": null
+    },
+    {
+      "name": "Khalid bin Khalifa Al Thani",
+      "title": "Chief Executive Officer",
+      "source_url": null
+    }
+  ],
+  "strategic_initiatives": [
+    {
+      "description": "Grow global LNG leadership",
+      "category": "Business Expansion",
+      "source_url": null
+    },
+    {
+      "description": "Optimize domestic upstream production",
+      "category": "Operational Efficiency",
+      "source_url": null
+    },
+    {
+      "description": "Maximize value from international upstream",
+      "category": "Business Development",
+      "source_url": null
+    },
+    {
+      "description": "Expand downstream and capture synergies",
+      "category": "Market Growth",
+      "source_url": null
+    },
+    {
+      "description": "Establish a position in low carbon business",
+      "category": "Sustainability",
+      "source_url": null
+    },
+    {
+      "description": "Expansion of LNG production capacity to 142 million tonnes per annum by 2030",
+      "category": "Production Expansion",
+      "source_url": null
+    },
+    {
+      "description": "Implementation of a CO2 capture system as part of the North Field Expansion Project",
+      "category": "Environmental Sustainability",
+      "source_url": null
+    },
+    {
+      "description": "Relocation of approximately 2,000 corals to protected sites as part of marine biodiversity commitment",
+      "category": "Biodiversity Conservation",
+      "source_url": null
+    },
+    {
+      "description": "Achieved a 70% reduction in flaring intensity and a 12% reduction in GHG emissions intensity compared to 2013",
+      "category": "Environmental Performance",
+      "source_url": null
+    }
+  ],
+  "evidence_links": [
+    {
+      "url": "https://www.qatarenergy.qa/en/MediaCenter/Publications/%E2%80%8BQatarEnergy%20Annual%20Review%202024.pdf",
+      "description": null
+    },
+    {
+      "url": "https://www.qatarenergy.qa/en/MediaCenter/Pages/Publications.aspx",
+      "description": null
+    },
+    {
+      "url": "https://www.qatarenergy.qa/en/MediaCenter/Publications/QatarEnergy%20Annual%20Review%202023.pdf",
+      "description": null
+    },
+    {
+      "url": "https://www.qatarenergy.qa/en/whoweare/governance/Pages/default.aspx",
+      "description": null
+    },
+    {
+      "url": "https://www.qatarenergylng.qa/Portals/0/DNNGalleryPro/uploads/2025/11/12/QatarEnergyLNGSustainabilityReport2024-EN.pdf",
+      "description": null
+    }
+  ],
+  "linkedin_search_suggestion": "site:linkedin.com/company \"QatarEnergy\" OR site:linkedin.com/in \"QatarEnergy\""
+}
