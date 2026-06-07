@@ -8,7 +8,9 @@
 ## What It Does
 
 Turns a company name or a geography into a structured intelligence report — including HQ, business units, key executives, strategic initiatives, and evidence links — ready for a consultant to use in outreach.
+
 Demo: https://drive.google.com/file/d/1lre_cfuySCcR6He0aPcfq6fWvMLGuldb/view?usp=sharing
+
 ### Architecture
 
 ```
