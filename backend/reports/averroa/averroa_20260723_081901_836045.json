@@ -1,0 +1,69 @@
+{
+  "company_name": "Averroa",
+  "headquarters": "Aramayona, San Blas-Canillejas, 28022 Madrid, Spain",
+  "business_units": [
+    "Digital Transformation Consulting",
+    "AI, Analytics & Decision Intelligence",
+    "Intelligent Supply Chain Systems",
+    "Enterprise Software & Workflow Automation"
+  ],
+  "products_and_services": [
+    "AI Consulting",
+    "Supply Chain Digitalization",
+    "Workflow Automation",
+    "Enterprise Software Development"
+  ],
+  "target_industries": [
+    "Technology",
+    "Supply Chain",
+    "Healthcare",
+    "Finance"
+  ],
+  "leadership": [
+    {
+      "name": "Mazen",
+      "title": "CEO",
+      "source_url": null
+    }
+  ],
+  "strategic_initiatives": [
+    {
+      "description": "Launch of AI initiatives to enhance decision-making processes.",
+      "category": "AI and Analytics",
+      "source_url": null
+    },
+    {
+      "description": "Implementation of intelligent supply chain systems to optimize operations.",
+      "category": "Supply Chain Management",
+      "source_url": null
+    },
+    {
+      "description": "Development of enterprise software solutions for workflow automation.",
+      "category": "Software Development",
+      "source_url": null
+    }
+  ],
+  "evidence_links": [
+    {
+      "url": "https://averroa.com/",
+      "description": null
+    },
+    {
+      "url": "https://www.omers.com/annual-reporting",
+      "description": null
+    },
+    {
+      "url": "https://www.aver.com/investor-relations",
+      "description": null
+    },
+    {
+      "url": "https://ir.avantorsciences.com/investors/financials/annual-reports/default.aspx",
+      "description": null
+    },
+    {
+      "url": "https://www.ebrofoods.es/wp-content/uploads/2024/06/Annual-Report-2023.pdf",
+      "description": null
+    }
+  ],
+  "linkedin_search_suggestion": "site:linkedin.com/company \"Averroa\" OR site:linkedin.com/in \"Averroa\""
+}

@@ -81,15 +81,36 @@ class EvidenceLink(BaseModel):
     description: Optional[str] = None
 
 
+class SourceRecord(BaseModel):
+    id: str
+    title: Optional[str] = None
+    url: str
+    original_url: Optional[str] = None
+    domain: str
+    publisher: Optional[str] = None
+    author: Optional[str] = None
+    snippet: Optional[str] = None
+    extracted_text: Optional[str] = None
+    published_at: Optional[str] = None
+    retrieved_at: Optional[str] = None
+    source_type: str = "Other"
+    search_query: Optional[str] = None
+    rank: Optional[int] = None
+    relevance_score: Optional[float] = None
+    extraction_status: str = "search_only"
+    evidence: List[str] = Field(default_factory=list)
+
+
 class CompanyReport(BaseModel):
     company_name: str
     headquarters: Optional[str] = None
-    business_units: List[str] = []
-    products_and_services: List[str] = []
-    target_industries: List[str] = []
-    leadership: List[ExecutiveSignal] = []
-    strategic_initiatives: List[StrategicInitiative] = []
-    evidence_links: List[EvidenceLink] = []
+    business_units: List[str] = Field(default_factory=list)
+    products_and_services: List[str] = Field(default_factory=list)
+    target_industries: List[str] = Field(default_factory=list)
+    leadership: List[ExecutiveSignal] = Field(default_factory=list)
+    strategic_initiatives: List[StrategicInitiative] = Field(default_factory=list)
+    evidence_links: List[EvidenceLink] = Field(default_factory=list)
+    search_results: List[SourceRecord] = Field(default_factory=list)
     raw_extraction: Optional[Dict[str, Any]] = None
     linkedin_search_suggestion: Optional[str] = None
 
@@ -103,3 +124,26 @@ class JobResponse(BaseModel):
     result: Optional[List[CompanyReport]] = None
     error: Optional[str] = None
     report_paths: Optional[Dict[str, str]] = None
+    stage: Optional[str] = None
+    query: Optional[str] = None
+    source_count: int = 0
+    report_ids: List[str] = Field(default_factory=list)
+    comparison_id: Optional[str] = None
+    previous_scan_date: Optional[str] = None
+
+
+class RegisterRequest(BaseModel):
+    name: str = Field(..., min_length=2, max_length=80)
+    email: str = Field(..., min_length=5, max_length=254, pattern=r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+    password: str = Field(..., min_length=10, max_length=128)
+
+
+class AuthRequest(BaseModel):
+    email: str = Field(..., min_length=5, max_length=254)
+    password: str = Field(..., min_length=1, max_length=128)
+
+
+class UserResponse(BaseModel):
+    id: str
+    name: str
+    email: str

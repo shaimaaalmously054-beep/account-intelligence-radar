@@ -18,10 +18,13 @@ _here = Path(__file__).parent
 load_dotenv(_here / ".env")          # backend/.env  (takes precedence)
 load_dotenv(_here.parent / ".env")   # project root .env
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 
-from routers import jobs
+from routers import auth, intelligence, jobs
+from services.database import init_db
 
 # ---------------------------------------------------------------------------
 # Logging (OWASP: no secrets / sensitive payloads in logs)
@@ -36,7 +39,7 @@ logger = logging.getLogger(__name__)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Account Intelligence Radar API starting up")
-    os.makedirs("reports", exist_ok=True)
+    init_db()
 
     # Validate API keys at startup — log presence only, never values
     required = {
@@ -73,16 +76,39 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+allowed_origins = [
+    origin.strip()
+    for origin in os.getenv(
+        "ALLOWED_ORIGINS", "http://localhost:8000,http://127.0.0.1:8000"
+    ).split(",")
+    if origin.strip()
+]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=allowed_origins,
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 app.include_router(jobs.router, prefix="/api/jobs", tags=["jobs"])
+app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
+app.include_router(intelligence.router, prefix="/api", tags=["intelligence"])
 
 
 @app.get("/health")
 async def health():
     return {"status": "ok", "service": "account-intelligence-radar"}
+
+
+_frontend = _here.parent / "frontend"
+if _frontend.exists():
+    @app.get("/")
+    async def frontend_index():
+        return FileResponse(_frontend / "index.html")
+
+    @app.get("/{path:path}")
+    async def frontend_routes(path: str):
+        if path.startswith("api/"):
+            raise HTTPException(404, "API route not found")
+        return FileResponse(_frontend / "index.html")

@@ -7,9 +7,9 @@ from __future__ import annotations
 
 import json
 import logging
-import os
 import re
 from datetime import datetime
+from pathlib import Path
 from typing import Any, Dict, List
 
 from models.schemas import (
@@ -18,13 +18,19 @@ from models.schemas import (
     ExecutiveSignal,
     StrategicInitiative,
 )
+from services.source_service import build_source_records
 
 logger = logging.getLogger(__name__)
 
-REPORTS_DIR = "reports"
+REPORTS_DIR = Path(__file__).resolve().parents[1] / "reports"
 
 
-def build_report(raw: Dict[str, Any], company_name: str) -> CompanyReport:
+def build_report(
+    raw: Dict[str, Any],
+    company_name: str,
+    search_results: List[Dict[str, Any]] | None = None,
+    selected_urls: List[str] | None = None,
+) -> CompanyReport:
     """Convert raw Firecrawl extraction dict into a typed CompanyReport."""
     source_urls: List[str] = raw.get("_source_urls", [])
 
@@ -68,6 +74,7 @@ def build_report(raw: Dict[str, Any], company_name: str) -> CompanyReport:
         leadership=leadership,
         strategic_initiatives=initiatives,
         evidence_links=evidence,
+        search_results=build_source_records(search_results or [], selected_urls or source_urls),
         raw_extraction=raw,
         linkedin_search_suggestion=linkedin_suggestion,
     )
@@ -78,12 +85,12 @@ def save_report(report: CompanyReport, job_id: str) -> Dict[str, str]:
     """Persist report to /reports/<company_name>/ as JSON and Markdown."""
     safe_name = re.sub(r"[^\w\-]", "_", report.company_name.strip().lower())
     safe_name = re.sub(r"_+", "_", safe_name).strip("_")
-    folder    = os.path.join(REPORTS_DIR, safe_name)
-    os.makedirs(folder, exist_ok=True)
+    folder = REPORTS_DIR / safe_name
+    folder.mkdir(parents=True, exist_ok=True)
 
-    timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M")
-    json_path = os.path.join(folder, f"{safe_name}_{timestamp}.json")
-    md_path   = os.path.join(folder, f"{safe_name}_{timestamp}.md")
+    timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S_%f")
+    json_path = folder / f"{safe_name}_{timestamp}.json"
+    md_path = folder / f"{safe_name}_{timestamp}.md"
 
     # JSON
     with open(json_path, "w", encoding="utf-8") as f:
@@ -91,13 +98,13 @@ def save_report(report: CompanyReport, job_id: str) -> Dict[str, str]:
 
     # Markdown
     with open(md_path, "w", encoding="utf-8") as f:
-        f.write(_to_markdown(report))
+        f.write(to_markdown(report))
 
     logger.info("Report saved: %s | %s", json_path, md_path)
-    return {"json": json_path, "markdown": md_path}
+    return {"json": str(json_path), "markdown": str(md_path)}
 
 
-def _to_markdown(r: CompanyReport) -> str:
+def to_markdown(r: CompanyReport) -> str:
     ts = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
     lines = [
         f"# Account Intelligence Report: {r.company_name}",

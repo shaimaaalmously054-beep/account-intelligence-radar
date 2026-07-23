@@ -1,178 +1,137 @@
 # Account Intelligence Radar
 
-> **Pipeline generation infrastructure for B2B outreach.**  
-> Built for Averroa | Author: Mazen Zawal | v1.0.0
+A persistent B2B intelligence workspace for researching companies and markets,
+reviewing evidence, preserving scan history, and detecting meaningful change.
 
----
+## Product workflow
 
-## What It Does
+`Search → Analyze → View → Save → Revisit → Compare → Detect Changes → Act`
 
-Turns a company name or a geography into a structured intelligence report — including HQ, business units, key executives, strategic initiatives, and evidence links — ready for a consultant to use in outreach.
+The original research engine remains intact:
 
-Demo: https://drive.google.com/file/d/1lre_cfuySCcR6He0aPcfq6fWvMLGuldb/view?usp=sharing
+1. SerpAPI discovers public sources.
+2. DeepSeek or OpenAI selects high-value URLs, with a rule-based fallback.
+3. Firecrawl extracts normalized company intelligence.
+4. The report builder preserves canonical JSON and Markdown outputs.
+5. SQLite stores user-owned scans, reports, company profiles, and comparisons.
+6. The responsive workspace presents dashboards, history, evidence, and changes.
 
-### Architecture
+## Features
 
+- Secure registration, login, logout, and server-side sessions
+- Salted PBKDF2 password hashing; passwords and API keys never reach the browser
+- Company and geography intelligence search modes
+- Real pipeline stage messages without fabricated percentages
+- Responsive SaaS dashboard with collapsible mobile navigation
+- Automatic per-user scan history and persistent company profiles
+- Normalized NEW, CHANGED, REMOVED, and UNCHANGED detection
+- Field-aware comparisons that ignore ordering, formatting, and common aliases
+- Full source/search-result preservation for new scans, with legacy evidence fallback
+- Searchable source cards, full URLs, deterministic types, and a details drawer
+- Raw SERP results and canonical JSON report tabs
+- Clickable evidence sources and claim-level attribution when available
+- Professional server-generated PDFs with clickable source bibliographies
+- PDF, JSON, and Markdown download routes
+- Light, dark, and system themes
+- Friendly provider, timeout, empty-result, and extraction error states
+
+## Architecture
+
+```text
+frontend/index.html (responsive SPA)
+        │ secure same-origin cookies
+        ▼
+FastAPI
+├── auth router
+├── jobs router
+├── reports / comparisons / companies router
+├── existing research pipeline
+└── SQLite persistence
+        ├── users
+        ├── sessions
+        ├── jobs
+        ├── reports
+        └── comparisons
 ```
-User Input
-    │
-    ▼
-[FastAPI Backend]
-    │
-    ├─ 1. SerpAPI          → Google search results (discovery)
-    ├─ 2. DeepSeek / GPT   → URL relevance scoring (decision)
-    │       └─ Fallback: OpenAI if DeepSeek returns 402
-    ├─ 3. Firecrawl        → Structured extraction from URLs (acquisition)
-    └─ 4. Report Builder   → JSON + Markdown output
-    │
-    ▼
-[Frontend]
-    Single-page HTML app — polls job status, renders report cards,
-    offers JSON + Markdown download.
-```
 
----
+The generated JSON remains the canonical intelligence format. The dashboard,
+source views, history, profiles, comparisons, and all exports are derived from it.
 
-## Quick Start
+## Run locally
 
-### 1. Clone / unzip
+Requires Python 3.10+.
 
-```bash
-cd account-intelligence-radar
-```
-
-### 2. Set up virtual environment
-
-```bash
+```powershell
 cd backend
 python -m venv .venv
-
-# Windows PowerShell:
 .\.venv\Scripts\Activate.ps1
-
-# macOS / Linux:
-source .venv/bin/activate
-```
-
-### 3. Install dependencies
-
-```bash
 pip install -r requirements.txt
+Copy-Item ..\example.env .env
 ```
 
-### 4. Configure API keys
+Add the provider keys to `backend/.env`, then start the application:
 
-```bash
-cp ../.env.example .env
-# Edit .env and fill in your API keys
-```
-
-`.env` contents:
-
-```
-SERPAPI_KEY=your_serpapi_key_here
-DEEPSEEK_API_KEY=your_deepseek_api_key_here
-OPENAI_API_KEY=your_openai_api_key_here   # optional fallback
-FIRECRAWL_API_KEY=your_firecrawl_api_key_here
-```
-
-### 5. Run the backend
-
-```bash
-# From /backend:
+```powershell
 uvicorn main:app --reload --port 8000
 ```
 
-### 6. Open the frontend
+Open `http://localhost:8000`. The FastAPI process now serves both the application
+and the API, which keeps authentication cookies same-origin.
 
-Open `frontend/index.html` in your browser.  
-Make sure the **API Base URL** field shows `http://localhost:8000`.
+## Test
 
----
+From `backend/`:
 
-## API Endpoints
-
-| Method | Path | Description |
-|--------|------|-------------|
-| POST | `/api/jobs` | Create a new intelligence job |
-| GET | `/api/jobs/{id}` | Poll job status |
-| GET | `/api/jobs/{id}/download/json` | Download JSON report |
-| GET | `/api/jobs/{id}/download/markdown` | Download Markdown report |
-| GET | `/health` | Health check |
-
-### Example: Company mode (cURL)
-
-```bash
-curl -X POST http://localhost:8000/api/jobs \
-  -H "Content-Type: application/json" \
-  -d '{
-    "mode": "company",
-    "company": {
-      "company_name": "Alfanar",
-      "objective_prompt": "Extract headquarters, business units, core products, target industries, key executives, and recent strategic initiatives. Return structured JSON."
-    }
-  }'
+```powershell
+python -m unittest discover -s tests -v
+python -m compileall -q .
 ```
 
-### Example: Geography mode
+The tests cover password hashing, session lifecycle, authenticated API access,
+record ownership, durable jobs, deletion authorization, comparison behavior,
+unsafe URL rejection, source normalization, legacy reports, PDF endpoints,
+clickable PDF links, and long multi-page reports.
 
-```bash
-curl -X POST http://localhost:8000/api/jobs \
-  -H "Content-Type: application/json" \
-  -d '{
-    "mode": "geography",
-    "geography": {
-      "location": "Riyadh, Saudi Arabia",
-      "target_criteria": "manufacturing, energy, logistics",
-      "top_n": 3
-    }
-  }'
-```
+## API
 
----
+| Method | Path | Purpose |
+|---|---|---|
+| POST | `/api/auth/register` | Create an account and session |
+| POST | `/api/auth/login` | Sign in |
+| POST | `/api/auth/logout` | Revoke the current session |
+| GET | `/api/auth/me` | Current user |
+| POST | `/api/jobs` | Start a company or geography scan |
+| GET | `/api/jobs` | Search and filter user-owned history |
+| GET | `/api/jobs/{id}` | Poll status and real pipeline stage |
+| POST | `/api/jobs/{id}/rerun` | Run the stored request again |
+| DELETE | `/api/jobs/{id}` | Delete a scan and dependent records |
+| GET | `/api/reports/{id}` | Dashboard-ready report |
+| GET | `/api/reports/{id}/export/{format}` | PDF, JSON, or Markdown export |
+| GET | `/api/comparisons/{id}` | Normalized change set |
+| GET | `/api/companies` | Persistent company profiles |
+| GET | `/api/companies/{slug}` | Current report, scans, and timeline |
 
-## Reports
+All intelligence and history endpoints require an authenticated user and enforce
+record ownership server-side.
 
-All reports are saved to `/backend/reports/<job_id>/` as:
-- `<company_name>.json` — structured data
-- `<company_name>.md`   — human-readable Markdown summary
+## Data and migration
 
----
+The database is created automatically at `backend/data/radar.db` on first start.
+No manual migration is required for a fresh deployment. The original report
+files under `backend/reports/` remain untouched and readable; new completed scans
+are written to both the legacy JSON/Markdown files and the persistent database.
 
-## Engineering Notes
+Existing historical files are not automatically assigned to users because they
+have no trustworthy ownership metadata. They can be imported later with an
+explicit administrator migration if needed.
 
-### Error Handling
-- **No SERP results** → raises `SerpAPIError` with clear message
-- **DeepSeek HTTP 402** → logs warning, falls back to OpenAI automatically
-- **OpenAI unavailable** → falls back to top-5 SERP results without LLM scoring
-- **Firecrawl async** → polls up to 20 times with 3-second intervals
-- **Firecrawl not ready** → raises `FirecrawlNotReadyError`
-- **Invalid JSON from LLM** → raises `LLMError` with raw response snippet
+## Deployment notes
 
-### Security
-- API keys loaded from `.env`, never logged or exposed
-- LinkedIn scraping is explicitly prohibited; a manual search query is suggested instead
-- All secrets managed via `python-dotenv`; `.env` is gitignored
-
-### Traceability
-- Every report includes `evidence_links` listing source URLs used
-- Strategic initiatives and leadership data are attributed to sources
-
----
-
-## What I Would Improve Next
-
-1. **Persistent job store** — swap in-memory dict for Redis or SQLite
-2. **Caching** — cache SERP + Firecrawl results for repeated queries
-3. **Streaming** — SSE/WebSocket for real-time progress updates
-4. **Auth** — add API key middleware for multi-user deployments
-5. **Unit tests** — URL filtering logic, JSON parsing, report builder
-6. **Rate limiting** — add per-IP throttling on the API endpoints
-
----
-
-## Sample Companies Tested
-- **Alfanar** (KSA) — engineering & construction conglomerate
-- **Almarai** (KSA) — largest vertically integrated dairy company in the world
-
-See `/reports/` for sample outputs.
+- Set `COOKIE_SECURE=true` behind HTTPS.
+- Set `ALLOWED_ORIGINS` to the exact permitted origins.
+- Store `SERPAPI_KEY`, `FIRECRAWL_API_KEY`, and optional LLM keys in server
+  environment variables.
+- Back up `backend/data/radar.db` and `backend/reports/`.
+- Run background scans through a durable worker queue before horizontal scaling;
+  FastAPI background tasks remain appropriate for the current single-process
+  deployment model.

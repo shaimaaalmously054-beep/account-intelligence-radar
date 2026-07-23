@@ -68,12 +68,15 @@ async def _search(query: str) -> List[Dict[str, Any]]:
         raise SerpAPIError(f"No search results found for: {query!r}")
 
     results = []
-    for item in organic:
+    for rank, item in enumerate(organic, 1):
         results.append(
             {
                 "title": item.get("title", ""),
                 "link": item.get("link", ""),
                 "snippet": item.get("snippet", ""),
+                "rank": rank,
+                "search_query": query,
+                "published_at": item.get("date"),
             }
         )
     logger.info("SerpAPI returned %d results for %r", len(results), query)
