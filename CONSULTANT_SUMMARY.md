@@ -1,6 +1,6 @@
 # Account Intelligence Radar — Consultant Summary
 
-**Prepared by:** Mazen Zawal
+**Prepared by:** Shaimaa Almously
 **Updated:** July 2026
 **Client:** Averroa (Internal)
 
