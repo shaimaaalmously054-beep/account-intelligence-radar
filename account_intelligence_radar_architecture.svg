@@ -1,148 +1,202 @@
-<svg width="100%" viewBox="0 0 680 580" role="img" style="" xmlns="http://www.w3.org/2000/svg">
-  <title style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">Account Intelligence Radar — Architecture Diagram</title>
-  <desc style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">Three-layer pipeline: SerpAPI discovery, LLM decision, Firecrawl extraction, report output, with frontend polling loop.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="860" viewBox="0 0 1200 860" role="img" aria-labelledby="title desc">
+  <title id="title">Account Intelligence Radar - Current Architecture</title>
+  <desc id="desc">Architecture diagram showing the authenticated SaaS workspace, FastAPI application, research pipeline, normalized intelligence data, SQLite persistence, comparison engine, interactive dashboard, sources, and PDF, JSON, and Markdown exports.</desc>
+
   <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <linearGradient id="headerGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1f765d"/>
+      <stop offset="1" stop-color="#173f34"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="7" stdDeviation="9" flood-color="#050907" flood-opacity=".28"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8.2" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M1 1.5 8.5 5 1 8.5" fill="none" stroke="#6ebd9f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </marker>
-  <mask id="imagine-text-gaps-p8r1h5" maskUnits="userSpaceOnUse"><rect x="0" y="0" width="680" height="580" fill="white"/><rect x="174.13839721679688" y="11.142857551574707" width="331.15179443359375" height="22.285715103149414" fill="black" rx="2"/><rect x="70.59822082519531" y="58.857147216796875" width="108.80357360839844" height="22.285715103149414" fill="black" rx="2"/><rect x="74.95089721679688" y="76" width="100.10798645019531" height="20" fill="black" rx="2"/><rect x="225.66519165039062" y="58.857147216796875" width="118.66964721679688" height="22.285715103149414" fill="black" rx="2"/><rect x="234.34376525878906" y="76" width="101.31250762939453" height="20" fill="black" rx="2"/><rect x="449.107177734375" y="58.857147216796875" width="111.78572082519531" height="22.285715103149414" fill="black" rx="2"/><rect x="428.1160888671875" y="76" width="153.7678680419922" height="20" fill="black" rx="2"/><rect x="273.2008972167969" y="106.85714721679688" width="133.65960693359375" height="20" fill="black" rx="2"/><rect x="108.90179443359375" y="142.85714721679688" width="76.1964340209961" height="22.285715103149414" fill="black" rx="2"/><rect x="103.90178680419922" y="160" width="86.5929183959961" height="20" fill="black" rx="2"/><rect x="86.10714721679688" y="172.00001525878906" width="121.78572082519531" height="20" fill="black" rx="2"/><rect x="282.23663330078125" y="142.85714721679688" width="119.52679443359375" height="22.285715103149414" fill="black" rx="2"/><rect x="301.9151916503906" y="160" width="80.5636215209961" height="20" fill="black" rx="2"/><rect x="280.95538330078125" y="172.00001525878906" width="122.13309478759766" height="20" fill="black" rx="2"/><rect x="287.5401916503906" y="214.85714721679688" width="109.56348419189453" height="22.285715103149414" fill="black" rx="2"/><rect x="288.40179443359375" y="232.00001525878906" width="107.1964340209961" height="20" fill="black" rx="2"/><rect x="353.4285888671875" y="186.85714721679688" width="27.98214340209961" height="20" fill="black" rx="2"/><rect x="495.8214416503906" y="142.85714721679688" width="82.35714721679688" height="22.285715103149414" fill="black" rx="2"/><rect x="492.4910888671875" y="160" width="89.4171371459961" height="20" fill="black" rx="2"/><rect x="469.5223388671875" y="172.00001525878906" width="135.00028228759766" height="20" fill="black" rx="2"/><rect x="283.04913330078125" y="290.8571472167969" width="118.42718505859375" height="22.285715103149414" fill="black" rx="2"/><rect x="287.40625" y="308" width="108.61607360839844" height="20" fill="black" rx="2"/><rect x="301.0848388671875" y="320" width="81.87918853759766" height="20" fill="black" rx="2"/><rect x="78.8125" y="374.8571472167969" width="101.80357360839844" height="22.285715103149414" fill="black" rx="2"/><rect x="79.4375" y="392.0000305175781" width="101.12500762939453" height="20" fill="black" rx="2"/><rect x="241.5044708251953" y="374.8571472167969" width="96.41964721679688" height="22.285715103149414" fill="black" rx="2"/><rect x="237.0535888671875" y="392.0000305175781" width="106.36579895019531" height="20" fill="black" rx="2"/><rect x="416.39288330078125" y="374.8571472167969" width="66.64286041259766" height="22.285715103149414" fill="black" rx="2"/><rect x="408.3482360839844" y="392.0000305175781" width="83.30357360839844" height="20" fill="black" rx="2"/><rect x="262.65179443359375" y="456.857177734375" width="154.69644165039062" height="22.285715103149414" fill="black" rx="2"/><rect x="133.6875" y="474.0000305175781" width="412.6250305175781" height="20" fill="black" rx="2"/><rect x="396.0000305175781" y="408.8571472167969" width="44.66964340209961" height="20" fill="black" rx="2"/><rect x="12" y="-5.142857313156128" width="59.46735763549805" height="20" fill="black" rx="2"/><rect x="92.00000762939453" y="-5.142857313156128" width="52.96428680419922" height="20" fill="black" rx="2"/><rect x="172.00001525878906" y="-5.142857313156128" width="60.267860412597656" height="20" fill="black" rx="2"/><rect x="262" y="-5.142857313156128" width="43.42857360839844" height="20" fill="black" rx="2"/><rect x="331.4285888671875" y="-5.142857313156128" width="85.53572082519531" height="20" fill="black" rx="2"/></mask></defs>
+    <marker id="arrowMuted" viewBox="0 0 10 10" refX="8.2" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M1 1.5 8.5 5 1 8.5" fill="none" stroke="#6f8178" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      .bg { fill:#0f1713; }
+      .band { fill:#141e19; stroke:#293a32; stroke-width:1; }
+      .band-label { fill:#7f9389; font:700 11px Inter,Segoe UI,sans-serif; letter-spacing:1.6px; }
+      .card { fill:#1a2620; stroke:#34483e; stroke-width:1; }
+      .card-green { fill:#15372c; stroke:#3d9c78; stroke-width:1; }
+      .card-blue { fill:#172d3b; stroke:#4f8cad; stroke-width:1; }
+      .card-amber { fill:#362b19; stroke:#ad8140; stroke-width:1; }
+      .card-purple { fill:#29243d; stroke:#7468a8; stroke-width:1; }
+      .title { fill:#eef6f1; font:700 24px Inter,Segoe UI,sans-serif; }
+      .subtitle { fill:#9bafa5; font:400 12px Inter,Segoe UI,sans-serif; }
+      .card-title { fill:#edf5f0; font:700 13px Inter,Segoe UI,sans-serif; }
+      .card-copy { fill:#a9bbb2; font:400 10.5px Inter,Segoe UI,sans-serif; }
+      .tiny { fill:#74887e; font:500 9.5px Inter,Segoe UI,sans-serif; }
+      .badge { fill:#21342b; stroke:#3b594b; stroke-width:1; }
+      .badge-text { fill:#87c9ac; font:700 9px Inter,Segoe UI,sans-serif; letter-spacing:.5px; }
+      .flow { fill:none; stroke:#6ebd9f; stroke-width:1.5; marker-end:url(#arrow); }
+      .flow-muted { fill:none; stroke:#6f8178; stroke-width:1.25; marker-end:url(#arrowMuted); }
+      .flow-dashed { fill:none; stroke:#8b7956; stroke-width:1.2; stroke-dasharray:5 4; marker-end:url(#arrowMuted); }
+      .divider { stroke:#293a32; stroke-width:1; }
+    </style>
+  </defs>
 
-  <!-- Title -->
-  <text x="340" y="28" text-anchor="middle" font-size="14" style="fill:rgb(250, 249, 245);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:auto">Account Intelligence Radar — pipeline architecture</text>
+  <rect class="bg" width="1200" height="860"/>
 
-  <!-- ── Row 0: User input ─────────────────────────────── -->
-  <!-- Company mode -->
-  <g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
-    <rect x="60" y="52" width="130" height="44" rx="8" stroke-width="0.5" style="fill:rgb(68, 68, 65);stroke:rgb(180, 178, 169);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-    <text x="125" y="70" text-anchor="middle" dominant-baseline="central" style="fill:rgb(211, 209, 199);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">Company mode</text>
-    <text x="125" y="86" text-anchor="middle" dominant-baseline="central" style="fill:rgb(180, 178, 169);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">name + objective</text>
-  </g>
-  <!-- Geography mode -->
-  <g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
-    <rect x="220" y="52" width="130" height="44" rx="8" stroke-width="0.5" style="fill:rgb(68, 68, 65);stroke:rgb(180, 178, 169);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-    <text x="285" y="70" text-anchor="middle" dominant-baseline="central" style="fill:rgb(211, 209, 199);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">Geography mode</text>
-    <text x="285" y="86" text-anchor="middle" dominant-baseline="central" style="fill:rgb(180, 178, 169);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">location + criteria</text>
-  </g>
+  <!-- Header -->
+  <rect x="28" y="24" width="1144" height="70" rx="16" fill="url(#headerGlow)" filter="url(#shadow)"/>
+  <circle cx="67" cy="59" r="18" fill="#6fd4ad"/>
+  <text x="67" y="63" text-anchor="middle" fill="#10261e" font-family="Inter,Segoe UI,sans-serif" font-size="11" font-weight="800">AR</text>
+  <text class="title" x="98" y="54">Account Intelligence Radar</text>
+  <text class="subtitle" x="98" y="74">Persistent, evidence-backed account intelligence workspace</text>
+  <rect class="badge" x="870" y="43" width="128" height="30" rx="15"/>
+  <text class="badge-text" x="934" y="62" text-anchor="middle">CURRENT STATE</text>
+  <rect class="badge" x="1010" y="43" width="134" height="30" rx="15"/>
+  <text class="badge-text" x="1077" y="62" text-anchor="middle">JULY 2026</text>
 
-  <!-- FastAPI job -->
-  <g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
-    <rect x="390" y="52" width="230" height="44" rx="8" stroke-width="0.5" style="fill:rgb(60, 52, 137);stroke:rgb(175, 169, 236);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-    <text x="505" y="70" text-anchor="middle" dominant-baseline="central" style="fill:rgb(206, 203, 246);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">FastAPI backend</text>
-    <text x="505" y="86" text-anchor="middle" dominant-baseline="central" style="fill:rgb(175, 169, 236);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">POST /api/jobs → async job</text>
-  </g>
+  <!-- Experience and identity -->
+  <rect class="band" x="28" y="112" width="1144" height="130" rx="16"/>
+  <text class="band-label" x="48" y="136">01 · EXPERIENCE &amp; IDENTITY</text>
 
-  <!-- arrows: inputs → backend -->
-  <line x1="190" y1="74" x2="388" y2="74" marker-end="url(#arrow)" mask="url(#imagine-text-gaps-p8r1h5)" style="fill:none;stroke:rgb(156, 154, 146);color:rgb(255, 255, 255);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-  <line x1="350" y1="74" x2="388" y2="74" marker-end="url(#arrow)" style="fill:none;stroke:rgb(156, 154, 146);color:rgb(255, 255, 255);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <g filter="url(#shadow)">
+    <rect class="card-green" x="52" y="153" width="208" height="66" rx="11"/>
+    <text class="card-title" x="70" y="178">Authenticated workspace</text>
+    <text class="card-copy" x="70" y="197">Registration · login · secure sessions</text>
+    <text class="tiny" x="70" y="212">PBKDF2 passwords · per-user ownership</text>
 
-  <!-- ── Divider label ─────────────────────────────────── -->
-  <text x="340" y="122" text-anchor="middle" style="fill:var(--color-text-tertiary);fill:rgb(156, 154, 146);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">── background job ──</text>
+    <rect class="card" x="282" y="153" width="200" height="66" rx="11"/>
+    <text class="card-title" x="300" y="178">Company search</text>
+    <text class="card-copy" x="300" y="197">Company name + research objective</text>
+    <text class="tiny" x="300" y="212">Repeat scans establish comparisons</text>
 
-  <!-- ── Row 1: Discovery ──────────────────────────────── -->
-  <g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
-    <rect x="60" y="134" width="175" height="56" rx="8" stroke-width="0.5" style="fill:rgb(8, 80, 65);stroke:rgb(93, 202, 165);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-    <text x="147" y="154" text-anchor="middle" dominant-baseline="central" style="fill:rgb(159, 225, 203);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">① SerpAPI</text>
-    <text x="147" y="170" text-anchor="middle" dominant-baseline="central" style="fill:rgb(93, 202, 165);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">discovery layer</text>
-    <text x="147" y="182" text-anchor="middle" dominant-baseline="central" style="fill:rgb(93, 202, 165);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">Google SERP → JSON</text>
-  </g>
+    <rect class="card" x="504" y="153" width="200" height="66" rx="11"/>
+    <text class="card-title" x="522" y="178">Geography search</text>
+    <text class="card-copy" x="522" y="197">Location + sector + target criteria</text>
+    <text class="tiny" x="522" y="212">Discovers and analyzes target accounts</text>
 
-  <!-- arrow down from backend -->
-  <line x1="505" y1="96" x2="505" y2="154" marker-end="url(#arrow)" mask="url(#imagine-text-gaps-p8r1h5)" style="fill:none;stroke:rgb(156, 154, 146);color:rgb(255, 255, 255);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-  <path d="M505 154 L505 162 L237 162" fill="none" stroke="var(--color-border-secondary)" stroke-width="1" marker-end="url(#arrow)" mask="url(#imagine-text-gaps-p8r1h5)" style="fill:none;stroke:rgba(222, 220, 209, 0.3);color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <rect class="card" x="726" y="153" width="200" height="66" rx="11"/>
+    <text class="card-title" x="744" y="178">History &amp; profiles</text>
+    <text class="card-copy" x="744" y="197">Saved scans · timelines · reruns</text>
+    <text class="tiny" x="744" y="212">Persistent company intelligence</text>
 
-  <!-- ── Row 2: Decision ───────────────────────────────── -->
-  <g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
-    <rect x="255" y="134" width="175" height="56" rx="8" stroke-width="0.5" style="fill:rgb(99, 56, 6);stroke:rgb(239, 159, 39);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-    <text x="342" y="154" text-anchor="middle" dominant-baseline="central" style="fill:rgb(250, 199, 117);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">② DeepSeek LLM</text>
-    <text x="342" y="170" text-anchor="middle" dominant-baseline="central" style="fill:rgb(239, 159, 39);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">decision layer</text>
-    <text x="342" y="182" text-anchor="middle" dominant-baseline="central" style="fill:rgb(239, 159, 39);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">scores &amp; selects URLs</text>
-  </g>
-
-  <!-- Fallback box -->
-  <g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
-    <rect x="255" y="208" width="175" height="44" rx="8" stroke-width="0.5" style="fill:rgb(68, 68, 65);stroke:rgb(180, 178, 169);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-    <text x="342" y="226" text-anchor="middle" dominant-baseline="central" style="fill:rgb(211, 209, 199);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">OpenAI fallback</text>
-    <text x="342" y="242" text-anchor="middle" dominant-baseline="central" style="fill:rgb(180, 178, 169);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">if DeepSeek → 402</text>
-  </g>
-
-  <!-- arrow SERP → LLM -->
-  <line x1="235" y1="162" x2="253" y2="162" marker-end="url(#arrow)" style="fill:none;stroke:rgb(156, 154, 146);color:rgb(255, 255, 255);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-  <!-- arrow LLM → fallback (dashed) -->
-  <line x1="342" y1="190" x2="342" y2="207" stroke="var(--color-border-secondary)" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrow)" mask="url(#imagine-text-gaps-p8r1h5)" style="fill:rgb(0, 0, 0);stroke:rgba(222, 220, 209, 0.3);color:rgb(255, 255, 255);stroke-width:1px;stroke-dasharray:4px, 3px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-  <!-- fallback label -->
-  <text x="358" y="202" style="fill:var(--color-text-tertiary);fill:rgb(156, 154, 146);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:auto">402</text>
-
-  <!-- ── Row 3: Extraction ─────────────────────────────── -->
-  <g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
-    <rect x="450" y="134" width="175" height="56" rx="8" stroke-width="0.5" style="fill:rgb(12, 68, 124);stroke:rgb(133, 183, 235);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-    <text x="537" y="154" text-anchor="middle" dominant-baseline="central" style="fill:rgb(181, 212, 244);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">③ Firecrawl</text>
-    <text x="537" y="170" text-anchor="middle" dominant-baseline="central" style="fill:rgb(133, 183, 235);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">extraction layer</text>
-    <text x="537" y="182" text-anchor="middle" dominant-baseline="central" style="fill:rgb(133, 183, 235);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">structured JSON + URLs</text>
+    <rect class="card-blue" x="948" y="153" width="200" height="66" rx="11"/>
+    <text class="card-title" x="966" y="178">Responsive SPA</text>
+    <text class="card-copy" x="966" y="197">Light · dark · system themes</text>
+    <text class="tiny" x="966" y="212">Desktop · tablet · mobile</text>
   </g>
 
-  <!-- LLM → Firecrawl -->
-  <line x1="430" y1="162" x2="448" y2="162" marker-end="url(#arrow)" style="fill:none;stroke:rgb(156, 154, 146);color:rgb(255, 255, 255);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <!-- Application and research pipeline -->
+  <rect class="band" x="28" y="260" width="1144" height="242" rx="16"/>
+  <text class="band-label" x="48" y="284">02 · FASTAPI APPLICATION &amp; RESEARCH PIPELINE</text>
 
-  <!-- ── Row 4: Report builder ─────────────────────────── -->
-  <g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
-    <rect x="255" y="282" width="175" height="56" rx="8" stroke-width="0.5" style="fill:rgb(113, 43, 19);stroke:rgb(240, 153, 123);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-    <text x="342" y="302" text-anchor="middle" dominant-baseline="central" style="fill:rgb(245, 196, 179);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">④ Report builder</text>
-    <text x="342" y="318" text-anchor="middle" dominant-baseline="central" style="fill:rgb(240, 153, 123);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">JSON + Markdown</text>
-    <text x="342" y="330" text-anchor="middle" dominant-baseline="central" style="fill:rgb(240, 153, 123);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">evidence links</text>
+  <g filter="url(#shadow)">
+    <rect class="card-purple" x="52" y="308" width="178" height="86" rx="12"/>
+    <text class="card-title" x="70" y="333">Protected API</text>
+    <text class="card-copy" x="70" y="353">Auth · jobs · reports</text>
+    <text class="card-copy" x="70" y="369">companies · comparisons</text>
+    <text class="tiny" x="70" y="385">FastAPI + ownership checks</text>
+
+    <rect class="card-green" x="276" y="308" width="170" height="86" rx="12"/>
+    <text class="card-title" x="294" y="333">1 · SerpAPI</text>
+    <text class="card-copy" x="294" y="353">Public-source discovery</text>
+    <text class="card-copy" x="294" y="369">Title · URL · snippet · rank</text>
+    <text class="tiny" x="294" y="385">Raw search results retained</text>
+
+    <rect class="card-amber" x="492" y="308" width="170" height="86" rx="12"/>
+    <text class="card-title" x="510" y="333">2 · URL decision</text>
+    <text class="card-copy" x="510" y="353">DeepSeek → OpenAI</text>
+    <text class="card-copy" x="510" y="369">Relevance scoring &amp; selection</text>
+    <text class="tiny" x="510" y="385">Deterministic fallback</text>
+
+    <rect class="card-blue" x="708" y="308" width="170" height="86" rx="12"/>
+    <text class="card-title" x="726" y="333">3 · Firecrawl</text>
+    <text class="card-copy" x="726" y="353">Structured page extraction</text>
+    <text class="card-copy" x="726" y="369">Leadership · initiatives</text>
+    <text class="tiny" x="726" y="385">Bounded async polling</text>
+
+    <rect class="card-green" x="924" y="308" width="224" height="86" rx="12"/>
+    <text class="card-title" x="942" y="333">4 · Normalize &amp; validate</text>
+    <text class="card-copy" x="942" y="353">Typed company intelligence</text>
+    <text class="card-copy" x="942" y="369">Safe URLs · deduped sources</text>
+    <text class="tiny" x="942" y="385">Pydantic report model</text>
   </g>
 
-  <!-- Firecrawl → report builder -->
-  <path d="M537 190 L537 310 L432 310" fill="none" stroke="var(--color-border-secondary)" stroke-width="1" marker-end="url(#arrow)" mask="url(#imagine-text-gaps-p8r1h5)" style="fill:none;stroke:rgba(222, 220, 209, 0.3);color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <path class="flow" d="M230 351 H274"/>
+  <path class="flow" d="M446 351 H490"/>
+  <path class="flow" d="M662 351 H706"/>
+  <path class="flow" d="M878 351 H922"/>
 
-  <!-- fallback → report builder -->
-  <line x1="342" y1="252" x2="342" y2="281" marker-end="url(#arrow)" mask="url(#imagine-text-gaps-p8r1h5)" style="fill:none;stroke:rgb(156, 154, 146);color:rgb(255, 255, 255);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <rect class="card" x="250" y="424" width="700" height="52" rx="10"/>
+  <text class="card-title" x="270" y="446">Real scan lifecycle</text>
+  <text class="card-copy" x="270" y="464">Discover sources → select high-value pages → extract intelligence → validate evidence → build report → open dashboard</text>
+  <path class="flow-muted" d="M141 394 V450 H248"/>
+  <path class="flow-muted" d="M1036 394 V450 H952"/>
+  <path class="flow-dashed" d="M577 394 V422"/>
+  <text class="tiny" x="589" y="415">provider fallback</text>
 
-  <!-- ── Row 5: Output ─────────────────────────────────── -->
-  <g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
-    <rect x="60" y="368" width="140" height="44" rx="8" stroke-width="0.5" style="fill:rgb(68, 68, 65);stroke:rgb(180, 178, 169);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-    <text x="130" y="386" text-anchor="middle" dominant-baseline="central" style="fill:rgb(211, 209, 199);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">/reports/*.json</text>
-    <text x="130" y="402" text-anchor="middle" dominant-baseline="central" style="fill:rgb(180, 178, 169);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">structured output</text>
+  <!-- Canonical data and persistence -->
+  <rect class="band" x="28" y="520" width="1144" height="145" rx="16"/>
+  <text class="band-label" x="48" y="544">03 · CANONICAL DATA &amp; PERSISTENCE</text>
+
+  <g filter="url(#shadow)">
+    <rect class="card-purple" x="52" y="566" width="212" height="72" rx="11"/>
+    <text class="card-title" x="70" y="591">SQLite persistence</text>
+    <text class="card-copy" x="70" y="610">Users · sessions · jobs</text>
+    <text class="tiny" x="70" y="626">Reports · comparisons · ownership</text>
+
+    <rect class="card-green" x="312" y="558" width="270" height="88" rx="12"/>
+    <text class="card-title" x="330" y="584">Canonical intelligence JSON</text>
+    <text class="card-copy" x="330" y="604">Company profile · findings · evidence</text>
+    <text class="card-copy" x="330" y="620">Leadership · strategic initiatives</text>
+    <text class="tiny" x="330" y="636">Single source for dashboard and exports</text>
+
+    <rect class="card-blue" x="630" y="566" width="238" height="72" rx="11"/>
+    <text class="card-title" x="648" y="591">Source records</text>
+    <text class="card-copy" x="648" y="610">URL · domain · snippet · query</text>
+    <text class="tiny" x="648" y="626">Rank · type · extraction status</text>
+
+    <rect class="card" x="916" y="566" width="232" height="72" rx="11"/>
+    <text class="card-title" x="934" y="591">Legacy report files</text>
+    <text class="card-copy" x="934" y="610">JSON + Markdown preserved</text>
+    <text class="tiny" x="934" y="626">Backward-compatible evidence URLs</text>
   </g>
-  <g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
-    <rect x="220" y="368" width="140" height="44" rx="8" stroke-width="0.5" style="fill:rgb(68, 68, 65);stroke:rgb(180, 178, 169);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-    <text x="290" y="386" text-anchor="middle" dominant-baseline="central" style="fill:rgb(211, 209, 199);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">/reports/*.md</text>
-    <text x="290" y="402" text-anchor="middle" dominant-baseline="central" style="fill:rgb(180, 178, 169);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">readable summary</text>
+
+  <path class="flow" d="M1036 394 V505 H447 V556"/>
+  <path class="flow-muted" d="M312 602 H266"/>
+  <path class="flow-muted" d="M582 602 H628"/>
+  <path class="flow-muted" d="M868 602 H914"/>
+
+  <!-- Presentation and outputs -->
+  <rect class="band" x="28" y="683" width="1144" height="149" rx="16"/>
+  <text class="band-label" x="48" y="707">04 · PRESENTATION, COMPARISON &amp; EXPORTS</text>
+
+  <g filter="url(#shadow)">
+    <rect class="card-green" x="52" y="730" width="248" height="76" rx="11"/>
+    <text class="card-title" x="70" y="755">Interactive report dashboard</text>
+    <text class="card-copy" x="70" y="774">Overview · findings · evidence</text>
+    <text class="tiny" x="70" y="791">Sources · search results · raw data</text>
+
+    <rect class="card-amber" x="328" y="730" width="238" height="76" rx="11"/>
+    <text class="card-title" x="346" y="755">Comparison engine</text>
+    <text class="card-copy" x="346" y="774">NEW · CHANGED · REMOVED</text>
+    <text class="tiny" x="346" y="791">Normalized, field-aware change detection</text>
+
+    <rect class="card-blue" x="594" y="730" width="258" height="76" rx="11"/>
+    <text class="card-title" x="612" y="755">Professional PDF</text>
+    <text class="card-copy" x="612" y="774">ReportLab · multi-page layout</text>
+    <text class="tiny" x="612" y="791">Clickable URLs · bibliography · page numbers</text>
+
+    <rect class="card-purple" x="880" y="730" width="268" height="76" rx="11"/>
+    <text class="card-title" x="898" y="755">Portable canonical exports</text>
+    <text class="card-copy" x="898" y="774">JSON download · Markdown download</text>
+    <text class="tiny" x="898" y="791">Same report ID and stored intelligence</text>
   </g>
-  <g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
-    <rect x="380" y="368" width="140" height="44" rx="8" stroke-width="0.5" style="fill:rgb(39, 80, 10);stroke:rgb(151, 196, 89);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-    <text x="450" y="386" text-anchor="middle" dominant-baseline="central" style="fill:rgb(192, 221, 151);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">Job store</text>
-    <text x="450" y="402" text-anchor="middle" dominant-baseline="central" style="fill:rgb(151, 196, 89);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">status + result</text>
-  </g>
 
-  <!-- report builder → outputs -->
-  <path d="M255 310 L130 310 L130 367" fill="none" stroke="var(--color-border-secondary)" stroke-width="1" marker-end="url(#arrow)" style="fill:none;stroke:rgba(222, 220, 209, 0.3);color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-  <path d="M255 318 L290 318 L290 367" fill="none" stroke="var(--color-border-secondary)" stroke-width="1" marker-end="url(#arrow)" mask="url(#imagine-text-gaps-p8r1h5)" style="fill:none;stroke:rgba(222, 220, 209, 0.3);color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-  <path d="M430 310 L450 310 L450 367" fill="none" stroke="var(--color-border-secondary)" stroke-width="1" marker-end="url(#arrow)" style="fill:none;stroke:rgba(222, 220, 209, 0.3);color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <path class="flow" d="M447 646 V676 H176 V728"/>
+  <path class="flow-muted" d="M447 646 V728"/>
+  <path class="flow-muted" d="M447 676 H723 V728"/>
+  <path class="flow-muted" d="M723 676 H1014 V728"/>
 
-  <!-- ── Row 6: Frontend ───────────────────────────────── -->
-  <g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
-    <rect x="60" y="450" width="560" height="44" rx="8" stroke-width="0.5" style="fill:rgb(60, 52, 137);stroke:rgb(175, 169, 236);color:rgb(255, 255, 255);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-    <text x="340" y="468" text-anchor="middle" dominant-baseline="central" style="fill:rgb(206, 203, 246);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central">Frontend — index.html</text>
-    <text x="340" y="484" text-anchor="middle" dominant-baseline="central" style="fill:rgb(175, 169, 236);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central">polls GET /api/jobs/{id} · renders report cards · downloads JSON / Markdown</text>
-  </g>
-
-  <!-- Job store → frontend (poll loop) -->
-  <path d="M450 412 L450 430 L340 430 L340 449" fill="none" stroke="var(--color-border-secondary)" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrow)" mask="url(#imagine-text-gaps-p8r1h5)" style="fill:none;stroke:rgba(222, 220, 209, 0.3);color:rgb(255, 255, 255);stroke-width:1px;stroke-dasharray:4px, 3px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-
-  <!-- poll label -->
-  <text x="400" y="424" style="fill:var(--color-text-tertiary);fill:rgb(156, 154, 146);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:auto">polling</text>
-
-  <!-- ── Legend ────────────────────────────────────────── -->
-  <g transform="translate(60,518)" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
-    <rect x="0" y="0" width="12" height="12" rx="3" style="fill:rgb(8, 80, 65);stroke:rgb(93, 202, 165);color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-    <text x="16" y="10" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:auto">Discovery</text>
-    <rect x="80" y="0" width="12" height="12" rx="3" style="fill:rgb(99, 56, 6);stroke:rgb(239, 159, 39);color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-    <text x="96" y="10" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:auto">Decision</text>
-    <rect x="160" y="0" width="12" height="12" rx="3" style="fill:rgb(12, 68, 124);stroke:rgb(133, 183, 235);color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-    <text x="176" y="10" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:auto">Extraction</text>
-    <rect x="250" y="0" width="12" height="12" rx="3" style="fill:rgb(113, 43, 19);stroke:rgb(240, 153, 123);color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-    <text x="266" y="10" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:auto">Report</text>
-    <rect x="320" y="0" width="12" height="12" rx="3" style="fill:rgb(60, 52, 137);stroke:rgb(175, 169, 236);color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
-    <text x="336" y="10" style="fill:rgb(194, 192, 182);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:auto">API / Frontend</text>
-  </g>
+  <!-- Footer -->
+  <line class="divider" x1="52" y1="842" x2="1148" y2="842"/>
+  <text class="tiny" x="52" y="854">Security boundary: HttpOnly sessions · server-side secrets · user-scoped records · escaped external content · HTTP(S)-only source links</text>
+  <text class="tiny" x="1148" y="854" text-anchor="end">FastAPI · SQLite · SerpAPI · DeepSeek/OpenAI · Firecrawl · ReportLab</text>
 </svg>
