@@ -1,0 +1,588 @@
+{
+  "company_name": "AI Ecosystem World Summit",
+  "headquarters": "Amsterdam, Netherlands",
+  "business_units": [],
+  "products_and_services": [],
+  "target_industries": [],
+  "leadership": [
+    {
+      "name": "Daphne Koller",
+      "title": "Founder & CEO, insitro; Cofounder, Coursera; Professor of Computer Science & Pathology, Stanford University",
+      "source_url": null
+    },
+    {
+      "name": "Zico Kolter",
+      "title": "Board of OpenAI; Chief Scientist, Gray Swan AI; Professor, Carnegie Mellon University",
+      "source_url": null
+    },
+    {
+      "name": "Marietje Schaake",
+      "title": "Former MEP & Fellow, Stanford University's Institute for Human-Centered Artificial Intelligence",
+      "source_url": null
+    },
+    {
+      "name": "Grady Booch",
+      "title": "ACM Fellow, IBM Fellow, IEEE Fellow, IEEE Computing Pioneer",
+      "source_url": null
+    },
+    {
+      "name": "Prof Simon See",
+      "title": "Professor, Nanyang Technological University; Global Head of NVAITC, NVIDIA",
+      "source_url": null
+    },
+    {
+      "name": "Dr Ling Ge",
+      "title": "Chief Investment and Strategy Officer (EMEA), Tencent",
+      "source_url": null
+    },
+    {
+      "name": "Harrison Chase",
+      "title": "Co-Founder and CEO, LangChain",
+      "source_url": null
+    },
+    {
+      "name": "Mark Papermaster",
+      "title": "CTO and EVP, AMD",
+      "source_url": null
+    },
+    {
+      "name": "Audrey Tang",
+      "title": "Cyber Ambassador, Government of Taiwan",
+      "source_url": null
+    },
+    {
+      "name": "Anne-Laure de Chammard",
+      "title": "Executive Vice-President for Industries Business Division & Member of the Executive Board, Siemens Energy",
+      "source_url": null
+    },
+    {
+      "name": "Jesper Schleimann",
+      "title": "AI Officer - EMEA, SAP",
+      "source_url": null
+    },
+    {
+      "name": "Michael Schaarschmidt",
+      "title": "VP, Co-Head of AI, Isomorphic Labs",
+      "source_url": null
+    },
+    {
+      "name": "Yann LeCun",
+      "title": "VP & Chief AI Scientist, Meta",
+      "source_url": null
+    },
+    {
+      "name": "Cassie Kosyrkov",
+      "title": "Chief Decision Scientist, Google",
+      "source_url": null
+    },
+    {
+      "name": "Werner Vogels",
+      "title": "VP & CTO, Amazon",
+      "source_url": null
+    },
+    {
+      "name": "Stuart Russell",
+      "title": "Professor of Computer Science, Berkeley University",
+      "source_url": null
+    },
+    {
+      "name": "Thomas Wolf",
+      "title": "Co-founder & CSO, Hugging Face",
+      "source_url": null
+    },
+    {
+      "name": "Joëlle Pineau",
+      "title": "Professor and William Dawson Scholar, School of Computer Science, McGill University; Vice President of AI Research, Meta",
+      "source_url": null
+    },
+    {
+      "name": "Gary Marcus",
+      "title": "CEO & Founder, Robust AI; Co-author, Rebooting AI; Professor of Psychology & Neural Science, New York University",
+      "source_url": null
+    },
+    {
+      "name": "Yoshua Bengio",
+      "title": "Canada CIFAR AI Chair; Full Professor, Samsung AI; Professor, Université de Montréal; Scientific Director, Mila & IVADO",
+      "source_url": null
+    },
+    {
+      "name": "Karen Hao",
+      "title": "NYT Bestselling Author and Journalist",
+      "source_url": null
+    },
+    {
+      "name": "Athina Kanioura",
+      "title": "Chief Strategy and Transformation Officer, PepsiCo",
+      "source_url": null
+    },
+    {
+      "name": "Constantijn van Oranje",
+      "title": "Special Envoy",
+      "source_url": null
+    },
+    {
+      "name": "Michael McNamara",
+      "title": "Member, European Parliament; Co-Chair, European Parliament's AI Working Group",
+      "source_url": null
+    },
+    {
+      "name": "Thibaut Kleiner",
+      "title": "Director, Communications Networks, Content and Technology, DG CONNECT, European Commission",
+      "source_url": null
+    },
+    {
+      "name": "Gosia Nikowska",
+      "title": "Head of Unit Artificial Intelligence Innovation and Policy Coordination, Artificial Intelligence Office, DG CNECT, European Commission",
+      "source_url": null
+    },
+    {
+      "name": "Dr. Alexandra-Gwyn Paetz",
+      "title": "Director General for Technological Sovereignty and Innovation, Federal Ministry of Research, Technology, and Space, Germany",
+      "source_url": null
+    },
+    {
+      "name": "Pamela Krzypkowska",
+      "title": "Director of Research and Innovation Department, Ministry of Digital Affairs, Poland",
+      "source_url": null
+    },
+    {
+      "name": "Daniel Všetečka",
+      "title": "Acting Director General for Digitalisation and Innovation, Ministry of Industry and Trade of the Czech Republic",
+      "source_url": null
+    },
+    {
+      "name": "Manuel Mateo Goyet",
+      "title": "Head of Unit, Cloud and Software, Future Networks, DG CONNECT, European Commission",
+      "source_url": null
+    },
+    {
+      "name": "Emmanuelle Ganne",
+      "title": "Chief of Digital Trade & Frontier Technology Unit, WTO",
+      "source_url": null
+    },
+    {
+      "name": "Juha Heikkilä",
+      "title": "Adviser for International Aspects of Artificial Intelligence, DG CNECT, European Commission",
+      "source_url": null
+    },
+    {
+      "name": "Karine Perset",
+      "title": "Acting Head of the AI and Emerging Digital Technologies (AIEDT), OECD",
+      "source_url": null
+    }
+  ],
+  "strategic_initiatives": [
+    {
+      "description": "AI for Good Global Summit 2026",
+      "category": "Event",
+      "source_url": null
+    },
+    {
+      "description": "AI Skills Coalition",
+      "category": "Initiative",
+      "source_url": null
+    },
+    {
+      "description": "Innovation Factory",
+      "category": "Program",
+      "source_url": null
+    },
+    {
+      "description": "AI for Good Impact Awards",
+      "category": "Recognition",
+      "source_url": null
+    },
+    {
+      "description": "AI Readiness Framework",
+      "category": "Framework",
+      "source_url": null
+    },
+    {
+      "description": "Global Initiative on AI for Health",
+      "category": "Health",
+      "source_url": null
+    },
+    {
+      "description": "Global Initiative on AI for Food Systems",
+      "category": "Food Security",
+      "source_url": null
+    },
+    {
+      "description": "AI and Climate Action",
+      "category": "Climate",
+      "source_url": null
+    },
+    {
+      "description": "Robotics for Good Youth Challenge",
+      "category": "Youth Engagement",
+      "source_url": null
+    }
+  ],
+  "evidence_links": [
+    {
+      "url": "https://partnershiponai.org/annual-report-2025/",
+      "description": null
+    },
+    {
+      "url": "https://worldsummit.ai/",
+      "description": null
+    },
+    {
+      "url": "https://aiforgood.itu.int/",
+      "description": null
+    },
+    {
+      "url": "https://globalnetworkinitiative.org/multistakeholder-promises-and-power-gaps-in-global-ai-summits/",
+      "description": null
+    },
+    {
+      "url": "https://global-aiconference.com/",
+      "description": null
+    }
+  ],
+  "search_results": [
+    {
+      "id": "884a2d1c866a96b3",
+      "title": "Qatar Investment Authority Reaches $60B in AI Investments",
+      "url": "https://linkedin.com/posts/giorgiotorre1234_boom-qatar-investment-authority-just-activity-7427644197827997697-p2By",
+      "original_url": "https://www.linkedin.com/posts/giorgiotorre1234_boom-qatar-investment-authority-just-activity-7427644197827997697-p2By",
+      "domain": "linkedin.com",
+      "publisher": "linkedin.com",
+      "author": null,
+      "snippet": "Here are the with global VCs: • Greycroft • Ion Pacific • Liberty City Ventures • Speedinvest. QatarEnergy: reservoir modeling, digital twins • ...",
+      "extracted_text": null,
+      "published_at": null,
+      "retrieved_at": "2026-07-23T11:02:54.797359+00:00",
+      "source_type": "LinkedIn",
+      "search_query": "top companies Engineering; Investing in AI Doha, Qatar",
+      "rank": 1,
+      "relevance_score": null,
+      "extraction_status": "search_only",
+      "evidence": []
+    },
+    {
+      "id": "f9f998eeedd91a6b",
+      "title": "Top Artificial Intelligence Companies in Qatar",
+      "url": "https://clutch.co/qa/developers/artificial-intelligence",
+      "original_url": null,
+      "domain": "clutch.co",
+      "publisher": "clutch.co",
+      "author": null,
+      "snippet": "Recommended Artificial Intelligence companies in Qatar include Blink22, Synergy Labs, Techgropse, Halo Lab, Hexaware Technologies, TEQ Booster",
+      "extracted_text": null,
+      "published_at": null,
+      "retrieved_at": "2026-07-23T11:02:54.797359+00:00",
+      "source_type": "Other",
+      "search_query": "top companies Engineering; Investing in AI Doha, Qatar",
+      "rank": 2,
+      "relevance_score": null,
+      "extraction_status": "search_only",
+      "evidence": []
+    },
+    {
+      "id": "df6d5b5500d73625",
+      "title": "87 Top AI (Artificial Intelligence) Companies in Qatar",
+      "url": "https://f6s.com/companies/artificial-intelligence/qatar/co",
+      "original_url": "https://www.f6s.com/companies/artificial-intelligence/qatar/co",
+      "domain": "f6s.com",
+      "publisher": "f6s.com",
+      "author": null,
+      "snippet": "Wady AI, Digital petroleum and 111 more AI (Artificial Intelligence) companies in Qatar from the F6S community. AI (Artificial Intelligence) is the 4th most ...",
+      "extracted_text": null,
+      "published_at": null,
+      "retrieved_at": "2026-07-23T11:02:54.797359+00:00",
+      "source_type": "Other",
+      "search_query": "top companies Engineering; Investing in AI Doha, Qatar",
+      "rank": 3,
+      "relevance_score": null,
+      "extraction_status": "search_only",
+      "evidence": []
+    },
+    {
+      "id": "399eb1aa7ce8506d",
+      "title": "Top AI Companies In Qatar: 10 Must-see Elite Firms ...",
+      "url": "https://tezeract.ai/top-ai-companies-in-qatar",
+      "original_url": "https://tezeract.ai/top-ai-companies-in-qatar/",
+      "domain": "tezeract.ai",
+      "publisher": "tezeract.ai",
+      "author": null,
+      "snippet": "1. Tezeract – Custom AI and Development Company · 2. Siine LLC Education AI Specialist · 3. Simitai AI Solutions Qatar · 4. Sharq Capital ...",
+      "extracted_text": null,
+      "published_at": "Nov 12, 2025",
+      "retrieved_at": "2026-07-23T11:02:54.797359+00:00",
+      "source_type": "Other",
+      "search_query": "top companies Engineering; Investing in AI Doha, Qatar",
+      "rank": 4,
+      "relevance_score": null,
+      "extraction_status": "search_only",
+      "evidence": []
+    },
+    {
+      "id": "9502c5569b91d5bc",
+      "title": "World Summit AI Qatar - Join the global AI Ecosystem",
+      "url": "https://qatar.worldsummit.ai/",
+      "original_url": null,
+      "domain": "qatar.worldsummit.ai",
+      "publisher": "qatar.worldsummit.ai",
+      "author": null,
+      "snippet": "World Summit AI comes to Qatar, uniting the global AI ecosystem across enterprise, big tech, startups, investors, science, and academia.",
+      "extracted_text": null,
+      "published_at": null,
+      "retrieved_at": "2026-07-23T11:02:54.797359+00:00",
+      "source_type": "Other",
+      "search_query": "top companies Engineering; Investing in AI Doha, Qatar",
+      "rank": 5,
+      "relevance_score": null,
+      "extraction_status": "search_only",
+      "evidence": []
+    },
+    {
+      "id": "caf5f3b4a0a5e548",
+      "title": "Best Tech Companies and Startups in Doha, Qatar 2026",
+      "url": "https://wellfound.com/startups/location/doha",
+      "original_url": null,
+      "domain": "wellfound.com",
+      "publisher": "wellfound.com",
+      "author": null,
+      "snippet": "Top Tech Startups in Doha, Qatar in 2026 · Scale AI · Stranger Soccer · Deaimer · Pitchmatter · Dieture · Himaya AI · Share this page · Tech Hubs.",
+      "extracted_text": null,
+      "published_at": null,
+      "retrieved_at": "2026-07-23T11:02:54.797359+00:00",
+      "source_type": "Other",
+      "search_query": "top companies Engineering; Investing in AI Doha, Qatar",
+      "rank": 6,
+      "relevance_score": null,
+      "extraction_status": "search_only",
+      "evidence": []
+    },
+    {
+      "id": "02601bf122689f2a",
+      "title": "AI Providers in Qatar | Bell Integration Enterprise AI Solutions",
+      "url": "https://bell-integration.com/ai-providers-in-qatar",
+      "original_url": "https://www.bell-integration.com/ai-providers-in-qatar/",
+      "domain": "bell-integration.com",
+      "publisher": "bell-integration.com",
+      "author": null,
+      "snippet": "Explore how to choose the right AI providers in Qatar for scalable, enterprise AI success. Discover how Bell Integration delivers end-to-end AI solutions ...",
+      "extracted_text": null,
+      "published_at": null,
+      "retrieved_at": "2026-07-23T11:02:54.797359+00:00",
+      "source_type": "Other",
+      "search_query": "top companies Engineering; Investing in AI Doha, Qatar",
+      "rank": 7,
+      "relevance_score": null,
+      "extraction_status": "search_only",
+      "evidence": []
+    },
+    {
+      "id": "e0993e0d610bf017",
+      "title": "AI Company in Qatar — About Five Nodes",
+      "url": "https://fivenodes.ai/about",
+      "original_url": null,
+      "domain": "fivenodes.ai",
+      "publisher": "fivenodes.ai",
+      "author": null,
+      "snippet": "Five Nodes is an AI company in Qatar — engineering bilingual WhatsApp AI agents, voice AI receptionists, and AI automation for businesses in Qatar.",
+      "extracted_text": null,
+      "published_at": null,
+      "retrieved_at": "2026-07-23T11:02:54.797359+00:00",
+      "source_type": "Other",
+      "search_query": "top companies Engineering; Investing in AI Doha, Qatar",
+      "rank": 8,
+      "relevance_score": null,
+      "extraction_status": "search_only",
+      "evidence": []
+    },
+    {
+      "id": "c066635fa74984dc",
+      "title": "Exploring innovation: inside Qatar's industrial clusters",
+      "url": "https://fdiintelligence.com/partner-content/59fcfdc0-9dba-4f00-903c-58b6a9072bbb",
+      "original_url": "https://www.fdiintelligence.com/partner-content/59fcfdc0-9dba-4f00-903c-58b6a9072bbb",
+      "domain": "fdiintelligence.com",
+      "publisher": "fdiintelligence.com",
+      "author": null,
+      "snippet": "Soon after, Quantiphi, a Google Cloud partner and AI-engineering firm, also announced an AI-first digital-engineering hub in the free zones, further building ...",
+      "extracted_text": null,
+      "published_at": null,
+      "retrieved_at": "2026-07-23T11:02:54.797359+00:00",
+      "source_type": "Other",
+      "search_query": "top companies Engineering; Investing in AI Doha, Qatar",
+      "rank": 9,
+      "relevance_score": null,
+      "extraction_status": "search_only",
+      "evidence": []
+    },
+    {
+      "id": "9a0756eab7f44766",
+      "title": "World Summit AI",
+      "url": "https://worldsummit.ai/",
+      "original_url": null,
+      "domain": "worldsummit.ai",
+      "publisher": "worldsummit.ai",
+      "author": null,
+      "snippet": "World Summit AI gathers the global AI ecosystem of Enterprise, Big Tech, Start-ups, Investors, Science and Academia every October in Amsterdam.",
+      "extracted_text": null,
+      "published_at": null,
+      "retrieved_at": "2026-07-23T11:02:54.797359+00:00",
+      "source_type": "Other",
+      "search_query": "AI Ecosystem World Summit official site annual report executives",
+      "rank": 1,
+      "relevance_score": null,
+      "extraction_status": "extracted",
+      "evidence": []
+    },
+    {
+      "id": "5cc5c182c3ef4907",
+      "title": "Unlocking AI's potential to serve humanity",
+      "url": "https://aiforgood.itu.int/",
+      "original_url": null,
+      "domain": "aiforgood.itu.int",
+      "publisher": "aiforgood.itu.int",
+      "author": null,
+      "snippet": "The flagship annual AI for Good Global Summit in Geneva, connecting AI innovators the global challenges. Alexandra Bustos Iliescu12",
+      "extracted_text": null,
+      "published_at": null,
+      "retrieved_at": "2026-07-23T11:02:54.797359+00:00",
+      "source_type": "Other",
+      "search_query": "AI Ecosystem World Summit official site annual report executives",
+      "rank": 2,
+      "relevance_score": null,
+      "extraction_status": "extracted",
+      "evidence": []
+    },
+    {
+      "id": "35d89e15c19477e8",
+      "title": "Multistakeholder Promises and Power Gaps in Global AI ...",
+      "url": "https://globalnetworkinitiative.org/multistakeholder-promises-and-power-gaps-in-global-ai-summits",
+      "original_url": "https://globalnetworkinitiative.org/multistakeholder-promises-and-power-gaps-in-global-ai-summits/",
+      "domain": "globalnetworkinitiative.org",
+      "publisher": "globalnetworkinitiative.org",
+      "author": null,
+      "snippet": "The New Delhi AI Impact Summit Declaration, signed by more than 90 countries, including China and the United States, continued this trajectory ...",
+      "extracted_text": null,
+      "published_at": "Apr 6, 2026",
+      "retrieved_at": "2026-07-23T11:02:54.797359+00:00",
+      "source_type": "Other",
+      "search_query": "AI Ecosystem World Summit official site annual report executives",
+      "rank": 3,
+      "relevance_score": null,
+      "extraction_status": "extracted",
+      "evidence": []
+    },
+    {
+      "id": "345b858bfbddda31",
+      "title": "Summary Report of White House AI Summit",
+      "url": "https://trumpwhitehouse.archives.gov/wp-content/uploads/2018/05/Summary-Report-of-White-House-AI-Summit.pdf",
+      "original_url": null,
+      "domain": "trumpwhitehouse.archives.gov",
+      "publisher": "trumpwhitehouse.archives.gov",
+      "author": null,
+      "snippet": "The summit brought together over 100 senior government officials, technical experts from top aca- demic institutions, heads of industrial ...",
+      "extracted_text": null,
+      "published_at": "May 10, 2018",
+      "retrieved_at": "2026-07-23T11:02:54.797359+00:00",
+      "source_type": "Government",
+      "search_query": "AI Ecosystem World Summit official site annual report executives",
+      "rank": 4,
+      "relevance_score": null,
+      "extraction_status": "search_only",
+      "evidence": []
+    },
+    {
+      "id": "85bcebcbcae84ec4",
+      "title": "AI & Climate Summit: Expert Insights on Responsible ...",
+      "url": "https://linkedin.com/posts/lauren-smart-1322199_expert-engagement-group-on-ai-and-climate-activity-7432854235161210880-aYCC",
+      "original_url": "https://www.linkedin.com/posts/lauren-smart-1322199_expert-engagement-group-on-ai-and-climate-activity-7432854235161210880-aYCC",
+      "domain": "linkedin.com",
+      "publisher": "linkedin.com",
+      "author": null,
+      "snippet": "Together with an exceptional group of international experts, we explored how AI can accelerate climate action, bridge innovation and ...",
+      "extracted_text": null,
+      "published_at": null,
+      "retrieved_at": "2026-07-23T11:02:54.797359+00:00",
+      "source_type": "LinkedIn",
+      "search_query": "AI Ecosystem World Summit official site annual report executives",
+      "rank": 5,
+      "relevance_score": null,
+      "extraction_status": "search_only",
+      "evidence": []
+    },
+    {
+      "id": "f1b25776b21bed81",
+      "title": "Annual Report 2025",
+      "url": "https://partnershiponai.org/annual-report-2025",
+      "original_url": "https://partnershiponai.org/annual-report-2025/",
+      "domain": "partnershiponai.org",
+      "publisher": "partnershiponai.org",
+      "author": null,
+      "snippet": "In 2025, we advanced the safety and responsibility of AI systems. We broadened our global community, expanded our expertise, prepared for emerging technology, ...",
+      "extracted_text": null,
+      "published_at": null,
+      "retrieved_at": "2026-07-23T11:02:54.797359+00:00",
+      "source_type": "Financial Report",
+      "search_query": "AI Ecosystem World Summit official site annual report executives",
+      "rank": 6,
+      "relevance_score": null,
+      "extraction_status": "extracted",
+      "evidence": []
+    },
+    {
+      "id": "ca3f9d399ad52a5b",
+      "title": "The International AI Summit - December 2026 | Brussels",
+      "url": "https://global-aiconference.com/",
+      "original_url": null,
+      "domain": "global-aiconference.com",
+      "publisher": "global-aiconference.com",
+      "author": null,
+      "snippet": "The Summit will provide a space to share perspectives, address real-world challenges, and explore how AI is reshaping economic systems, social dynamics, and ...",
+      "extracted_text": null,
+      "published_at": null,
+      "retrieved_at": "2026-07-23T11:02:54.797359+00:00",
+      "source_type": "Other",
+      "search_query": "AI Ecosystem World Summit official site annual report executives",
+      "rank": 7,
+      "relevance_score": null,
+      "extraction_status": "extracted",
+      "evidence": []
+    },
+    {
+      "id": "bc2493ede922a185",
+      "title": "What does the future of AI look like for you and your business ...",
+      "url": "https://instagram.com/reel/DYAMWlHAUmb",
+      "original_url": "https://www.instagram.com/reel/DYAMWlHAUmb/",
+      "domain": "instagram.com",
+      "publisher": "instagram.com",
+      "author": null,
+      "snippet": "Shiva Venkatraman, CEO, World AI Summit 2026 is officially here. Join global AI leaders, policymakers, innovators, enterprises, startups, ...",
+      "extracted_text": null,
+      "published_at": null,
+      "retrieved_at": "2026-07-23T11:02:54.797359+00:00",
+      "source_type": "Other",
+      "search_query": "AI Ecosystem World Summit official site annual report executives",
+      "rank": 8,
+      "relevance_score": null,
+      "extraction_status": "search_only",
+      "evidence": []
+    },
+    {
+      "id": "087fa018d2ee9a08",
+      "title": "World AI Summit 2026 | Global Artificial Intelligence ...",
+      "url": "https://worldaisummit.com/",
+      "original_url": "https://www.worldaisummit.com/",
+      "domain": "worldaisummit.com",
+      "publisher": "worldaisummit.com",
+      "author": null,
+      "snippet": "The summit will bring together policymakers, industry leaders, innovators, researchers, and practitioners to drive responsible AI adoption that creates ...",
+      "extracted_text": null,
+      "published_at": null,
+      "retrieved_at": "2026-07-23T11:02:54.797359+00:00",
+      "source_type": "Other",
+      "search_query": "AI Ecosystem World Summit official site annual report executives",
+      "rank": 9,
+      "relevance_score": null,
+      "extraction_status": "search_only",
+      "evidence": []
+    }
+  ],
+  "linkedin_search_suggestion": "site:linkedin.com/company \"AI Ecosystem World Summit\" OR site:linkedin.com/in \"AI Ecosystem World Summit\""
+}
