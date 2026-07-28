@@ -1,6 +1,6 @@
 """
 Account Intelligence Radar - FastAPI Backend
-Averroa Assignment | Author: Mazen Zawal
+
 """
 
 import logging
